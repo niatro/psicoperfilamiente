@@ -1,0 +1,75 @@
+# Perfil Profesional de Ignacio Pincheira Lagos
+
+## Información Personal
+**Nombre:** Ignacio Pincheira Lagos
+
+## Información Profesional
+
+**Empresa:** Seguridad en Transporte y Minería (SETRAM)  
+**Cargo Actual:** Ingeniero de Proyectos  
+**Ubicación:** Región Metropolitana de Santiago, Chile  
+**Modalidad de Trabajo:** Presencial
+
+### Experiencia Profesional
+
+1. **Ingeniero de Proyectos**
+   - **Empresa:** Seguridad en Transporte y Minería (SETRAM)
+   - **Periodo:** Noviembre 2023 - Actualidad
+   - **Duración:** 10 meses
+   - **Ubicación:** Región Metropolitana de Santiago, Chile
+   - **Modalidad:** Presencial
+
+2. **Ayudante de Modelos de Optimización**
+   - **Empresa:** Universidad del Bio Bio
+   - **Periodo:** Marzo 2023 - Agosto 2023
+   - **Duración:** 6 meses
+   - **Ubicación:** Concepción, Bio Bio, Chile
+   - **Modalidad:** Híbrido
+
+3. **Práctica Profesional II**
+   - **Empresa:** LOTA PROTEIN S.A
+   - **Periodo:** Enero 2022 - Febrero 2022
+   - **Duración:** 2 meses
+   - **Ubicación:** Lota, Bio Bio, Chile
+   - **Modalidad:** Presencial
+
+4. **Práctica Profesional I**
+   - **Empresa:** LOTA PROTEIN S.A
+   - **Periodo:** Enero 2021 - Febrero 2021
+   - **Duración:** 2 meses
+   - **Ubicación:** Lota, Bio Bio, Chile
+   - **Modalidad:** Presencial
+
+## Educación
+
+**Institución:** Universidad del Bio Bio  
+**Título:** Magíster en Ingeniería Industrial
+
+## Certificaciones y Licencias
+
+1. **Bases de GIT, GITHUB**
+   - **Entidad:** Desafío Latam
+   - **Fecha:** Marzo 2024
+   - **ID:** dqkmogbabk
+
+2. **Foundations of Prompt Engineering**
+   - **Entidad:** Amazon
+   - **Fecha:** Febrero 2024
+   - **ID:** E-OWE48X
+
+### Resumen del Perfil
+
+Ignacio Pincheira Lagos es un ingeniero industrial con un magíster en Ingeniería Industrial de la Universidad del Bio Bio. Actualmente, se desempeña como Ingeniero de Proyectos en Seguridad en Transporte y Minería (SETRAM), con base en la Región Metropolitana de Santiago, Chile.
+
+Ignacio cuenta con experiencia previa como ayudante en modelos de optimización y ha realizado prácticas profesionales en LOTA PROTEIN S.A., tanto en 2021 como en 2022. Su trayectoria muestra una versatilidad en diferentes modalidades de trabajo que van desde presencial hasta híbrido.
+
+Ha continuado su formación con certificaciones relevantes, incluyendo conocimientos en GIT y GITHUB de Desafío Latam y fundaciones de ingeniería de prompts acreditadas por Amazon.
+
+### Competencias Clave
+
+- Gestión de proyectos en entornos industriales y de transporte.
+- Optimización de modelos industriales.
+- Conocimiento práctico y avanzados de herramientas de GIT y GITHUB.
+- Fundamentos de ingeniería de prompts.
+
+Este perfil subraya su capacidad para adaptarse a diferentes desafíos, su compromiso con la mejora continua y su enfoque en la aplicación práctica del conocimiento teórico adquirido a lo largo de su carrera académica y profesional.

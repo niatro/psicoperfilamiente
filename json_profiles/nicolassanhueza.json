@@ -1,0 +1,61 @@
+{
+    "Nombre": "Nicolas Sanhueza",
+    "Empresa": "Aldu ingenieria",
+    "Cargo": "Fundador",
+    "Experiencia": [
+        {
+            "Cargo": "Fundador",
+            "Empresa": "Aldu ingenieria",
+            "Duracion": "ene. 2023 - actualidad",
+            "Ubicacion": "Santiago, Chile",
+            "Descripcion": "Asesorias ambientales y tecnol\u00f3gicas para proyectos relevantes en las estrategias nacionales del Ministerio de Obras P\u00fablicas y para la municipalidad de Vitacura"
+        },
+        {
+            "Cargo": "Consultor independiente",
+            "Empresa": "Newcleo",
+            "Duracion": "ene. 2012 - ene. 2015",
+            "Ubicacion": "Chile - China",
+            "Descripcion": "Gesti\u00f3n de inversiones en criptomonedas (Bitcoin, Ethereum, ERC20 y otros) a trav\u00e9s del desarrollo de carteras \u00d3ptimas (seg\u00fan CAPM) y gesti\u00f3n de \u00e9stas mismas en los Exchanges Internacionales"
+        },
+        {
+            "Cargo": "Jefe de Proyecto",
+            "Empresa": "Applus",
+            "Duracion": "2007 - 2010",
+            "Ubicacion": "Santiago, Chile",
+            "Descripcion": "An\u00e1lisis ambiental y de procesos productivos"
+        },
+        {
+            "Cargo": "Jefe de Proyecto",
+            "Empresa": "ATM ingenier\u00eda",
+            "Duracion": "2004 - 2007",
+            "Ubicacion": "Santiago, Chile",
+            "Descripcion": "Crear, desarrollar y mantener sistema de manejo de toda la informaci\u00f3n ambiental de CODELCO ANDINA. Preparar presentaciones para el \u00e1rea comercial de la filial en la b\u00fasqueda de nuevos clientes"
+        }
+    ],
+    "Educacion": [
+        {
+            "Institucion": "Pontificia Universidad Cat\u00f3lica de Chile",
+            "Carrera": "Transferencia de infraestructura en IA",
+            "Descripcion": "Actividades y grupos: Nataci\u00f3n"
+        },
+        {
+            "Institucion": "IRB",
+            "Carrera": "Chino Mandar\u00edn, Diploma",
+            "Duracion": "2010 - 2011",
+            "Descripcion": "Actividades y grupos: Equipo Basquetball"
+        }
+    ],
+    "Certificaciones y licencias": [
+        {
+            "Nombre": "Chinese Language Certification HSK 4",
+            "Institucion": "Office of Chinese Language Council International",
+            "Fecha de expedicion": "dic. 2012",
+            "ID de la credencial": "H41212040283"
+        },
+        {
+            "Nombre": "English Language Certification ETAPP",
+            "Institucion": "Instituto Chileno Norteamericano",
+            "Fecha de expedicion": "oct. 2012"
+        }
+    ]
+}

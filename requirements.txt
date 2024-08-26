@@ -1,0 +1,8 @@
+pandas
+selenium
+webdriver_manager
+Pillow
+openai
+pytesseract
+python-dotenv
+anthropic

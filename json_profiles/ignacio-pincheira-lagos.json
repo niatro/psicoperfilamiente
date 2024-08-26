@@ -1,0 +1,55 @@
+{
+    "Nombre": "Ignacio Pincheira Lagos",
+    "Empresa": "Seguridad en Transporte y Mineria (SETRAM)",
+    "Cargo": "Ingeniero de Proyectos",
+    "Experiencia": [
+        {
+            "Cargo": "Ingeniero de Proyectos",
+            "Empresa": "Seguridad en Transporte y Miner\u00eda (SETRAM)",
+            "Periodo": "nov. 2023 - actualidad",
+            "Duracion": "10 meses",
+            "Ubicacion": "Regi\u00f3n Metropolitana de Santiago, Chile - Presencial"
+        },
+        {
+            "Cargo": "Ayudante de Modelos de Optimizaci\u00f3n",
+            "Empresa": "Universidad del Bio Bio",
+            "Periodo": "mar. 2023 - ago. 2023",
+            "Duracion": "6 meses",
+            "Ubicacion": "Concepci\u00f3n, Bio Bio, Chile - H\u00edbrido"
+        },
+        {
+            "Cargo": "Pr\u00e1ctica Profesional II",
+            "Empresa": "LOTA PROTEIN S.A",
+            "Periodo": "ene. 2022 - feb. 2022",
+            "Duracion": "2 meses",
+            "Ubicacion": "Lota, Bio Bio, Chile - Presencial"
+        },
+        {
+            "Cargo": "Pr\u00e1ctica Profesional I",
+            "Empresa": "LOTA PROTEIN S.A",
+            "Periodo": "ene. 2021 - feb. 2021",
+            "Duracion": "2 meses",
+            "Ubicacion": "Lota, Bio Bio, Chile - Presencial"
+        }
+    ],
+    "Educacion": [
+        {
+            "Institucion": "Universidad del Bio Bio",
+            "Titulo": "Mag\u00edster en Ingenier\u00eda Industrial"
+        }
+    ],
+    "Certificaciones_y_Licencias": [
+        {
+            "Nombre": "Bases de GIT, GITHUB",
+            "Entidad": "Desafio Latam",
+            "Fecha": "mar. 2024",
+            "ID": "dqkmogbabk"
+        },
+        {
+            "Nombre": "Foundations of Prompt Engineering",
+            "Entidad": "Amazon",
+            "Fecha": "feb. 2024",
+            "ID": "E-OWE48X"
+        }
+    ]
+}
