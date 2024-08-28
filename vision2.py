@@ -43,6 +43,7 @@ def process_text_with_gpt4(text):
                     - Experiencia (incluyendo años e instituciones)
                     - Educación (incluyendo años e instituciones)
                     - Certificaciones y licencias (incluyendo años e instituciones)
+                    - Cantidad de contactos
                     
                     El texto del perfil es el siguiente:
                     \n\n{text}
