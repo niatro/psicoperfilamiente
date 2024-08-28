@@ -11,18 +11,24 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def configurar_driver_con_perfil():
+def configurar_driver_con_perfil_y_extension():
     options = Options()
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
     
-    # Usar el perfil temporal que configuraste
+    # Ruta del perfil donde se encuentra la extensión
     profile_path = "C:/TempChromeProfile"
     options.add_argument(f"user-data-dir={profile_path}")
     
+    # Asegurar que las extensiones se carguen
+    options.add_argument("--load-extension=/ruta/de/la/extension")  # Reemplaza esta ruta con la ruta de tu extensión
+
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
+
+    # Maximizar la ventana del navegador
+    driver.maximize_window()
     
     return driver
 
@@ -58,10 +64,8 @@ def capturar_pantalla_completa(driver, file_path):
     total_width = driver.execute_script("return document.body.scrollWidth")
     total_height = driver.execute_script("return document.body.scrollHeight")
 
-    driver.set_window_size(total_width, total_height)
-    
-    viewport_width = driver.execute_script("return window.innerWidth")
-    viewport_height = driver.execute_script("return window.innerHeight")
+    # Mantener el tamaño original de la ventana ya maximizada
+    original_size = driver.get_window_size()
     
     stitched_image = Image.new('RGB', (total_width, total_height))
     
@@ -77,7 +81,7 @@ def capturar_pantalla_completa(driver, file_path):
 
         stitched_image.paste(screenshot, (0, y_position))
         
-        y_position += viewport_height
+        y_position += original_size['height']
         part += 1
 
         os.remove(screenshot_path)
@@ -85,7 +89,21 @@ def capturar_pantalla_completa(driver, file_path):
     stitched_image.save(file_path)
     print(f"Captura de pantalla completa guardada en {file_path}")
 
-def obtener_perfiles_linkedin(desde_archivo, email, password, output_dir):
+def capturar_pantalla_parcial(driver, file_path):
+    try:
+        # Asegurarse de que la página esté en la parte superior antes de capturar
+        driver.execute_script("window.scrollTo(0, 0);")
+        time.sleep(0.5)  # Dar tiempo para que la página se acomode en la parte superior
+
+        # Capturar la pantalla completa en ese punto sin cambiar el tamaño
+        screenshot = driver.get_screenshot_as_png()
+        with open(file_path, "wb") as f:
+            f.write(screenshot)
+        print(f"Captura parcial (parte superior) guardada en {file_path}")
+    except Exception as e:
+        print(f"Error al capturar la pantalla parcial: {str(e)}")
+
+def obtener_perfiles_linkedin(desde_archivo, email, password, output_dir_completo, output_dir_parcial):
     # Leer el archivo Excel con las URLs
     df = pd.read_excel(desde_archivo)
 
@@ -95,7 +113,7 @@ def obtener_perfiles_linkedin(desde_archivo, email, password, output_dir):
         return
     
     # Configurar el driver
-    driver = configurar_driver_con_perfil()
+    driver = configurar_driver_con_perfil_y_extension()
     
     try:
         # Iniciar sesión en LinkedIn
@@ -110,8 +128,14 @@ def obtener_perfiles_linkedin(desde_archivo, email, password, output_dir):
             
             # Crear el nombre del archivo basándose en el identificador de LinkedIn
             file_name = f"{url.split('/')[-2]}.png"
-            file_path = os.path.join(output_dir, file_name)
-            capturar_pantalla_completa(driver, file_path)
+            
+            # Captura completa
+            file_path_completo = os.path.join(output_dir_completo, file_name)
+            capturar_pantalla_completa(driver, file_path_completo)
+            
+            # Captura parcial (solo la primera pantalla)
+            file_path_parcial = os.path.join(output_dir_parcial, file_name)
+            capturar_pantalla_parcial(driver, file_path_parcial)
 
     except Exception as e:
         print(f"Error al procesar los perfiles: {str(e)}")
@@ -122,9 +146,17 @@ if __name__ == "__main__":
     desde_archivo = "prueba_url.xlsx"  # Archivo Excel con las URLs de LinkedIn
     email = input("Introduce tu correo electrónico de LinkedIn: ")
     password = input("Introduce tu contraseña de LinkedIn: ")
-    output_dir = "capturas_linkedin"
     
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    # Carpetas de salida
+    output_dir_completo = "capturas_linkedin"
+    output_dir_parcial = "captura_1"
     
-    obtener_perfiles_linkedin(desde_archivo, email, password, output_dir)
+    # Crear carpetas si no existen
+    if not os.path.exists(output_dir_completo):
+        os.makedirs(output_dir_completo)
+    
+    if not os.path.exists(output_dir_parcial):
+        os.makedirs(output_dir_parcial)
+    
+    obtener_perfiles_linkedin(desde_archivo, email, password, output_dir_completo, output_dir_parcial)
+
