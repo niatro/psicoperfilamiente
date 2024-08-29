@@ -1,61 +1,52 @@
 {
     "Nombre": "Nicolas Sanhueza",
-    "Empresa": "Aldu ingenieria",
+    "Empresa": "Al4u ingenieria",
     "Cargo": "Fundador",
     "Experiencia": [
         {
             "Cargo": "Fundador",
-            "Empresa": "Aldu ingenieria",
-            "Duracion": "ene. 2023 - actualidad",
-            "Ubicacion": "Santiago, Chile",
-            "Descripcion": "Asesorias ambientales y tecnol\u00f3gicas para proyectos relevantes en las estrategias nacionales del Ministerio de Obras P\u00fablicas y para la municipalidad de Vitacura"
-        },
-        {
-            "Cargo": "Consultor independiente",
-            "Empresa": "Newcleo",
-            "Duracion": "ene. 2012 - ene. 2015",
-            "Ubicacion": "Chile - China",
-            "Descripcion": "Gesti\u00f3n de inversiones en criptomonedas (Bitcoin, Ethereum, ERC20 y otros) a trav\u00e9s del desarrollo de carteras \u00d3ptimas (seg\u00fan CAPM) y gesti\u00f3n de \u00e9stas mismas en los Exchanges Internacionales"
+            "Empresa": "Al4u ingenieria",
+            "Periodo": "ene. 2023 - actualidad",
+            "Duracion": "1 a\u00f1o 8 meses",
+            "Ubicacion": "Regi\u00f3n Metropolitana de Santiago, Chile",
+            "Descripcion": "Gestion de inversiones en criptomonedas (Bitcoin, Ethereum, ERC20 y otros) a traves del desarrollo de carteras optimas (seg\u00fan CAPM) y gesti\u00f3n de \u00e9stas en los Exchanges Internacionales."
         },
         {
             "Cargo": "Jefe de Proyecto",
             "Empresa": "Applus",
-            "Duracion": "2007 - 2010",
+            "Periodo": "2007 - 2010",
+            "Duracion": "3 a\u00f1os",
             "Ubicacion": "Santiago, Chile",
-            "Descripcion": "An\u00e1lisis ambiental y de procesos productivos"
+            "Descripcion": "An\u00e1lisis ambiental y de procesos productivos."
         },
         {
             "Cargo": "Jefe de Proyecto",
-            "Empresa": "ATM ingenier\u00eda",
-            "Duracion": "2004 - 2007",
+            "Empresa": "ATM ingenieria",
+            "Periodo": "2004 - 2007",
+            "Duracion": "3 a\u00f1os",
             "Ubicacion": "Santiago, Chile",
-            "Descripcion": "Crear, desarrollar y mantener sistema de manejo de toda la informaci\u00f3n ambiental de CODELCO ANDINA. Preparar presentaciones para el \u00e1rea comercial de la filial en la b\u00fasqueda de nuevos clientes"
+            "Descripcion": "Crear, desarrollar y mantener sistemas de manejo de toda la informaci\u00f3n ambiental de CODELCO ANDINA. Preparar presentaciones para el \u00e1rea comercial de la filial en la b\u00fasqueda de nuevos clientes."
         }
     ],
     "Educacion": [
         {
             "Institucion": "Pontificia Universidad Cat\u00f3lica de Chile",
-            "Carrera": "Transferencia de infraestructura en IA",
-            "Descripcion": "Actividades y grupos: Nataci\u00f3n"
-        },
-        {
-            "Institucion": "IRB",
-            "Carrera": "Chino Mandar\u00edn, Diploma",
-            "Duracion": "2010 - 2011",
-            "Descripcion": "Actividades y grupos: Equipo Basquetball"
+            "Grado": "Master's degree, Ingenieria industrial",
+            "Periodo": "2013 - 2014"
         }
     ],
-    "Certificaciones y licencias": [
+    "Certificaciones_y_Licencias": [
         {
-            "Nombre": "Chinese Language Certification HSK 4",
-            "Institucion": "Office of Chinese Language Council International",
-            "Fecha de expedicion": "dic. 2012",
-            "ID de la credencial": "H41212040283"
+            "Nombre": "Certificaci\u00f3n de Lenguaje Chino",
+            "Institucion": "Universidad",
+            "Fecha_Expedicion": "dic. 2012",
+            "ID_Credencial": "H41212040283"
         },
         {
             "Nombre": "English Language Certification ETAPP",
             "Institucion": "Instituto Chileno Norteamericano",
-            "Fecha de expedicion": "oct. 2012"
+            "Fecha_Expedicion": "oct. 2012"
         }
-    ]
+    ],
+    "Cantidad_de_Contactos": 487
 }
