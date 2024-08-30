@@ -1,48 +1,89 @@
 {
     "Nombre": "Ignacio Pincheira Lagos",
     "Empresa": "Seguridad en Transporte y Mineria (SETRAM)",
-    "Cargo": "Ingeniero de Proyectos",
+    "Cargo": "Ingeniero de Proyectos I+D",
+    "Cantidad de contactos": 159,
     "Experiencia": [
         {
-            "posicion": "Ingeniero de Proyectos",
-            "empresa": "Seguridad en Transporte y Mineria (SETRAM)",
-            "tiempo": "nov. 2023 - actualidad",
-            "duracion": "10 meses",
-            "ubicacion": "Regi\u00f3n Metropolitana de Santiago, Chile - Presencial"
+            "Cargo": "Ingeniero de Proyectos I+D",
+            "Empresa": "Seguridad en Transporte y Mineria (SETRAM)",
+            "A\u00f1os": "nov. 2023 - actualidad",
+            "Instituci\u00f3n": "Seguridad en Transporte y Mineria (SETRAM)",
+            "Duraci\u00f3n": "10 meses"
         },
         {
-            "posicion": "Ayudante de Modelos de Optimizaci\u00f3n",
-            "empresa": "Universidad del Bio Bio",
-            "tiempo": "mar. 2023 - ago. 2023",
-            "duracion": "6 meses",
-            "ubicacion": "Concepci\u00f3n, Bio Bio, Chile - H\u00edbrido"
+            "Cargo": "Ayudante de Modelos de Optimizaci\u00f3n",
+            "Empresa": "Universidad del Bio Bio",
+            "A\u00f1os": "mar. 2023 - ago. 2023",
+            "Instituci\u00f3n": "Universidad del Bio Bio",
+            "Duraci\u00f3n": "6 meses"
         },
         {
-            "posicion": "Ayudante de Investigaci\u00f3n",
-            "empresa": "Universidad del Bio Bio",
-            "tiempo": "ago. 2022 - ago. 2023",
-            "duracion": "1 a\u00f1o 1 mes"
+            "Cargo": "Ayudante de Investigaci\u00f3n",
+            "Empresa": "Universidad del Bio Bio",
+            "A\u00f1os": "ago. 2022 - ago. 2023",
+            "Instituci\u00f3n": "Universidad del Bio Bio",
+            "Duraci\u00f3n": "1 a\u00f1o 1 mes"
         },
         {
-            "posicion": "Apoyo t\u00e9cnico en el \u00e1rea de operaciones",
-            "empresa": "LOTA PROTEIN S.A",
-            "tiempo": "ene. 2021 - feb. 2021",
-            "duracion": "2 meses",
-            "ubicacion": "Lota, Bio Bio, Chile - Presencial"
+            "Cargo": "Pr\u00e1ctica Profesional II",
+            "Empresa": "LOTA PROTEIN S.A",
+            "A\u00f1os": "ene. 2022 - feb. 2022",
+            "Instituci\u00f3n": "LOTA PROTEIN S.A",
+            "Duraci\u00f3n": "2 meses"
+        },
+        {
+            "Cargo": "Pr\u00e1ctica Profesional I",
+            "Empresa": "LOTA PROTEIN S.A",
+            "A\u00f1os": "ene. 2021 - feb. 2021",
+            "Instituci\u00f3n": "LOTA PROTEIN S.A",
+            "Duraci\u00f3n": "2 meses"
         }
     ],
-    "Educaci\u00f3n": [
+    "Educacion": [
         {
-            "institucion": "Universidad del Bio Bio",
-            "titulo": "Magister en Ingenieria Industrial",
-            "a\u00f1os": "mar. 2022 - ago. 2023"
+            "T\u00edtulo": "Magister en Ingenier\u00eda Industrial",
+            "Instituci\u00f3n": "Universidad del Bio Bio",
+            "A\u00f1os": "mar. 2022 - ago. 2023"
         },
         {
-            "institucion": "Universidad del Bio Bio",
-            "titulo": "Ingeniero Civil Industrial",
-            "a\u00f1os": "mar. 2018 - mar. 2023"
+            "T\u00edtulo": "Ingeniero Civil Industrial",
+            "Instituci\u00f3n": "Universidad del Bio Bio",
+            "A\u00f1os": "mar. 2018 - mar. 2023"
         }
     ],
-    "Certificaciones y licencias": [],
-    "Cantidad de contactos": 159
+    "Licencias y certificaciones": [
+        {
+            "Nombre": "Bases de GIT, GITHUB",
+            "Instituci\u00f3n": "Desafio Latam",
+            "A\u00f1os": "mar. 2024",
+            "ID de la credencial": "dgkmogbabk"
+        },
+        {
+            "Nombre": "Foundations of Prompt Engineering",
+            "Instituci\u00f3n": "Amazon",
+            "A\u00f1os": "feb. 2024",
+            "ID de la credencial": "E-OWE48X"
+        }
+    ],
+    "Conocimientos y aptitudes": [
+        "Git",
+        "GitHub"
+    ],
+    "Recomendaciones": [],
+    "Publicaciones": [
+        {
+            "Texto": "Ceremonia de Graduaci\u00f3n de Postgrado 2024. @ Magister en Ingenier\u00eda Industrial, Universidad del Bio Bio. #postgrado #magister #ingenieria UBB",
+            "Fecha": "+ 10 meses"
+        },
+        {
+            "Texto": "He empezado en un nuevo puesto de Ingeniero de proyecto en Seguridad en Transporte y Mineria (SETRAM)!",
+            "Fecha": "+ 10 meses",
+            "Comentarios": 6
+        }
+    ],
+    "Cursos": [],
+    "Idiomas": [
+        "Espa\u00f1ol"
+    ]
 }

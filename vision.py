@@ -40,11 +40,16 @@ def process_text_with_gpt4(text):
                     - Nombre
                     - Empresa
                     - Cargo
+                    - Cantidad de contactos
                     - Experiencia (incluyendo años e instituciones)
                     - Educación (incluyendo años e instituciones)
-                    - Certificaciones y licencias (incluyendo años e instituciones)
-                    - Cantidad de contactos
-                    
+                    - Licencias y certificaciones (incluyendo años e instituciones)
+                    - Conocimientos y aptitudes
+                    - Recomendaciones
+                    - Publicaciones
+                    - Cursos
+                    - Idiomas
+    
                     El texto del perfil es el siguiente:
                     \n\n{text}
                     """
