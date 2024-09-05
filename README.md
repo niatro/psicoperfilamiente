@@ -2,6 +2,110 @@
 
 AInstein LinkedIn Analyzer es una herramienta potente que automatiza el proceso de extracción, análisis y generación de emails personalizados a partir de perfiles de LinkedIn. Este proyecto aprovecha los últimos avances en web scraping, procesamiento de lenguaje natural e inteligencia artificial para proporcionar una solución integral para empresas que buscan mejorar sus esfuerzos de alcance en LinkedIn.
 
+```mermaid
+graph TD
+subgraph Input["Input"]
+A[("📊 Perfil LinkedIn")]
+P[("⚙️ Usuario y Contraseña")]
+end
+
+subgraph Screenshot["Screenshot"]
+C["📸 Capturador Web"]
+F[("📁 Screnshot linkedin")]
+G[("📁 Screnshot sección 1")]
+end
+
+subgraph Curriculum["Currículum"]
+E["🧠 Analizador de Perfiles"]
+I[("📁 Análisis perfil")]
+end
+
+subgraph Rostro["Rostro"]
+D["🖼️ Extractor de Imágenes"]
+H[("📁 Análisis foto")]
+end
+
+subgraph Psicoperfilamiento["Psicoperfilamiento"]
+J["🧠 Generador de Perfiles IA"]
+K{"🤖 Elección de IA"}
+L["🤖 GPT-4"]
+M["🤖 Claude"]
+N["📄 Generador de Perfiles"]
+O[("📁 Perfil Completo")]
+end
+
+subgraph Email["Email"]
+T["✉️ Generador de Emails IA"]
+U{"🤖 Elección de IA"}
+V["🤖 GPT-4"]
+W["🤖 Claude"]
+X[("📁 mails")]
+end
+
+Q["🌐 Búsqueda en web"]
+R["📝 Archetypes"]
+S["📝 Prompts de Email"]
+
+A -->|URLs de LinkedIn| C
+P -.->|Configuración| C
+C -->|Capturas completas| F
+C -->|Capturas parciales| G
+F -->|Análisis de captura| E
+G -->|Extracción de secciones| D
+E -->|Datos estructurados| I
+D -->|Fotos procesadas| H
+I -->|Análisis de perfil| J
+H -->|Análisis de foto| J
+J -->|Selección de modelo| K
+K -->|OpenAI| L --> N
+K -->|Anthropic| M --> N
+N -->|Emails y perfiles| O
+O -->|Perfiles completos| T
+T -->|Selección de modelo| U
+U -->|OpenAI| V --> X
+U -->|Anthropic| W --> X
+Q -.->|Análisis Web| J
+R -.->|Prompts| J
+S -.->|Prompts| T
+
+%% Definición de estilos
+classDef inputFile fill:#FF5733,stroke:#333,stroke-width:2px,color:white
+classDef mainScript fill:#3498DB,stroke:#333,stroke-width:2px,color:white
+classDef jsScript fill:#F1C40F,stroke:#333,stroke-width:2px,color:black
+classDef pythonScript fill:#2ECC71,stroke:#333,stroke-width:2px,color:white
+classDef outputFolder fill:#E67E22,stroke:#333,stroke-width:2px,color:white
+classDef aiScript fill:#9B59B6,stroke:#333,stroke-width:2px,color:white
+classDef decision fill:#FF69B4,stroke:#333,stroke-width:2px,color:black
+classDef aiModel fill:#27AE60,stroke:#333,stroke-width:2px,color:white
+classDef outputScript fill:#16A085,stroke:#333,stroke-width:2px,color:white
+classDef configFile fill:#8E44AD,stroke:#333,stroke-width:2px,color:white
+classDef promptFile fill:#2980B9,stroke:#333,stroke-width:2px,color:white
+classDef webSearch fill:#4CAF50,stroke:#333,stroke-width:2px,color:white
+
+%% Asignación de clases a nodos
+class A,P inputFile
+class C jsScript
+class D,E pythonScript
+class F,G,H,I,O,X outputFolder
+class J,T aiScript
+class K,U decision
+class L,M,V,W aiModel
+class N outputScript
+class Q webSearch
+class R,S promptFile
+
+%% Estilos de subgrafos con colores más oscuros
+style Input fill:#8B4513,stroke:#FF9800,stroke-width:2px,color:white
+style Screenshot fill:#1A237E,stroke:#2196F3,stroke-width:2px,color:white
+style Curriculum fill:#1B5E20,stroke:#4CAF50,stroke-width:2px,color:white
+style Rostro fill:#880E4F,stroke:#E91E63,stroke-width:2px,color:white
+style Psicoperfilamiento fill:#311B92,stroke:#673AB7,stroke-width:2px,color:white
+style Email fill:#B71C1C,stroke:#F44336,stroke-width:2px,color:white
+
+%% Estilo de las flechas
+linkStyle default stroke:#FFFFFF,stroke-width:2px,fill:none
+```
+
 ## Características
 
 - **Scraping de Perfiles de LinkedIn**: Extrae automáticamente datos de perfiles de LinkedIn, incluyendo texto, imágenes y otra información relevante.
