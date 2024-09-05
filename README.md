@@ -8,23 +8,19 @@ subgraph Input["Input"]
 A[("📊 Perfil LinkedIn")]
 P[("⚙️ Usuario y Contraseña")]
 end
-
 subgraph Screenshot["Screenshot"]
 C["📸 Capturador Web"]
 F[("📁 Screnshot linkedin")]
 G[("📁 Screnshot sección 1")]
 end
-
 subgraph Curriculum["Currículum"]
 E["🧠 Analizador de Perfiles"]
 I[("📁 Análisis perfil")]
 end
-
 subgraph Rostro["Rostro"]
 D["🖼️ Extractor de Imágenes"]
 H[("📁 Análisis foto")]
 end
-
 subgraph Psicoperfilamiento["Psicoperfilamiento"]
 J["🧠 Generador de Perfiles IA"]
 K{"🤖 Elección de IA"}
@@ -33,7 +29,6 @@ M["🤖 Claude"]
 N["📄 Generador de Perfiles"]
 O[("📁 Perfil Completo")]
 end
-
 subgraph Email["Email"]
 T["✉️ Generador de Emails IA"]
 U{"🤖 Elección de IA"}
@@ -41,11 +36,9 @@ V["🤖 GPT-4"]
 W["🤖 Claude"]
 X[("📁 mails")]
 end
-
 Q["🌐 Búsqueda en web"]
 R["📝 Archetypes"]
 S["📝 Prompts de Email"]
-
 A -->|URLs de LinkedIn| C
 P -.->|Configuración| C
 C -->|Capturas completas| F
@@ -67,21 +60,19 @@ U -->|Anthropic| W --> X
 Q -.->|Análisis Web| J
 R -.->|Prompts| J
 S -.->|Prompts| T
-
 %% Definición de estilos
-classDef inputFile fill:#FF5733,stroke:#333,stroke-width:2px,color:white
-classDef mainScript fill:#3498DB,stroke:#333,stroke-width:2px,color:white
-classDef jsScript fill:#F1C40F,stroke:#333,stroke-width:2px,color:black
-classDef pythonScript fill:#2ECC71,stroke:#333,stroke-width:2px,color:white
-classDef outputFolder fill:#E67E22,stroke:#333,stroke-width:2px,color:white
-classDef aiScript fill:#9B59B6,stroke:#333,stroke-width:2px,color:white
-classDef decision fill:#FF69B4,stroke:#333,stroke-width:2px,color:black
-classDef aiModel fill:#27AE60,stroke:#333,stroke-width:2px,color:white
-classDef outputScript fill:#16A085,stroke:#333,stroke-width:2px,color:white
-classDef configFile fill:#8E44AD,stroke:#333,stroke-width:2px,color:white
-classDef promptFile fill:#2980B9,stroke:#333,stroke-width:2px,color:white
-classDef webSearch fill:#4CAF50,stroke:#333,stroke-width:2px,color:white
-
+classDef inputFile fill:#FFA07A,stroke:#333,stroke-width:2px,color:black
+classDef mainScript fill:#87CEFA,stroke:#333,stroke-width:2px,color:black
+classDef jsScript fill:#FFD700,stroke:#333,stroke-width:2px,color:black
+classDef pythonScript fill:#90EE90,stroke:#333,stroke-width:2px,color:black
+classDef outputFolder fill:#F4A460,stroke:#333,stroke-width:2px,color:black
+classDef aiScript fill:#DDA0DD,stroke:#333,stroke-width:2px,color:black
+classDef decision fill:#FFB6C1,stroke:#333,stroke-width:2px,color:black
+classDef aiModel fill:#98FB98,stroke:#333,stroke-width:2px,color:black
+classDef outputScript fill:#20B2AA,stroke:#333,stroke-width:2px,color:black
+classDef configFile fill:#DA70D6,stroke:#333,stroke-width:2px,color:black
+classDef promptFile fill:#87CEEB,stroke:#333,stroke-width:2px,color:black
+classDef webSearch fill:#90EE90,stroke:#333,stroke-width:2px,color:black
 %% Asignación de clases a nodos
 class A,P inputFile
 class C jsScript
@@ -93,17 +84,15 @@ class L,M,V,W aiModel
 class N outputScript
 class Q webSearch
 class R,S promptFile
-
-%% Estilos de subgrafos con colores más oscuros
-style Input fill:#8B4513,stroke:#FF9800,stroke-width:2px,color:white
-style Screenshot fill:#1A237E,stroke:#2196F3,stroke-width:2px,color:white
-style Curriculum fill:#1B5E20,stroke:#4CAF50,stroke-width:2px,color:white
-style Rostro fill:#880E4F,stroke:#E91E63,stroke-width:2px,color:white
-style Psicoperfilamiento fill:#311B92,stroke:#673AB7,stroke-width:2px,color:white
-style Email fill:#B71C1C,stroke:#F44336,stroke-width:2px,color:white
-
+%% Estilos de subgrafos con colores más claros
+style Input fill:#FFE4B5,stroke:#FF8C00,stroke-width:2px,color:black
+style Screenshot fill:#E6E6FA,stroke:#4169E1,stroke-width:2px,color:black
+style Curriculum fill:#E0FFF0,stroke:#2E8B57,stroke-width:2px,color:black
+style Rostro fill:#FFF0F5,stroke:#FF69B4,stroke-width:2px,color:black
+style Psicoperfilamiento fill:#E6E6FA,stroke:#8A2BE2,stroke-width:2px,color:black
+style Email fill:#FFF0F5,stroke:#DC143C,stroke-width:2px,color:black
 %% Estilo de las flechas
-linkStyle default stroke:#FFFFFF,stroke-width:2px,fill:none
+linkStyle default stroke:#000000,stroke-width:2px,fill:none
 ```
 
 ## Características
