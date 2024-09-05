@@ -1,1 +1,2 @@
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --user-data-dir="C:/TempChromeProfile"
+python linkedin_scraper.py --email ignaciopincheira13@gmail.com --password vicente2000 

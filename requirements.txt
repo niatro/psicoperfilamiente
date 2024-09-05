@@ -1,8 +1,11 @@
-pandas
-selenium
-webdriver_manager
-Pillow
-openai
-pytesseract
-python-dotenv
-anthropic
+ pandas
+ selenium
+ webdriver_manager>=4.0.0
+ Pillow
+ openai==0.28
+ pytesseract
+ python-dotenv
+ anthropic
+ requests
+requests
+beautifulsoup4

@@ -1,123 +1,144 @@
 {
     "Nombre": "Nicolas Sanhueza",
-    "Empresa": "Aldu ingenier\u00eda",
+    "Empresa": "Aldu Ingenieria",
     "Cargo": "Fundador",
     "Cantidad de contactos": 487,
+    "Acerca de": "Soy ingeniero de la Universidad Cat\u00f3lica, apasionado por la inteligencia artificial y dedicado a traer sus ventajas a las empresas a trav\u00e9s de Aldu, mi propia start-up. Como experto en ingenier\u00eda de prompts y con una visi\u00f3n siempre actualizada de las \u00faltimas tendencias en IA, gu\u00edo a las organizaciones a implementar soluciones personalizadas de IA que se integran perfectamente con sus flujos de trabajo y estrategias. Creo firmemente en un futuro mejor y m\u00e1s en",
+    "Publicaciones": [
+        {
+            "T\u00edtulo": "Introducci\u00f3n a las redes sociales chinas",
+            "Fecha": "14 jul. 2015",
+            "Descripci\u00f3n": "China ocupa sistemas de comunicaci\u00f3n diferentes de occidente, para entrar en el mundo Chino se deben conocer estos sistemas. Estar al margen de estas tecnolog\u00edas producida que uno se transforme en un espectador de China m\u00e1s que un..."
+        }
+    ],
     "Experiencia": [
         {
-            "Titulo": "Fundador",
-            "Empresa": "Aldu ingenier\u00eda",
-            "Periodo": "ene. 2022 - actualidad",
-            "Duracion": "1 a\u00f1o 8 meses",
-            "Ubicacion": "Santiago, Chile - H\u00edbrido",
-            "Descripcion": "Durante el \u00faltimo a\u00f1o, me he sumergido en el fascinante mundo de la inteligencia artificial, estudiando y..."
+            "Cargo": "Fundador",
+            "Instituci\u00f3n": "Aldu Ingenieria",
+            "A\u00f1os": "2 a\u00f1os",
+            "Descripci\u00f3n": "Durante el \u00faltimo a\u00f1o, me he sumergido en el fascinante mundo de la inteligencia artificial, estudiando y..."
         },
         {
-            "Titulo": "Consultor senior",
-            "Empresa": "Santo - Profesional independiente",
-            "Periodo": "2023",
-            "Duracion": "8 a\u00f1os 7 meses",
-            "Descripcion": "Asesor\u00edas ambientales y tecnol\u00f3gicas para proyectos relevantes en las estrategias nacionales del Ministerio de Obras P\u00fablicas y para la municipalidad de Vitacura"
+            "Cargo": "Consultor senior",
+            "Instituci\u00f3n": "Santo",
+            "A\u00f1os": "8 a\u00f1os y 7 meses",
+            "Descripci\u00f3n": "Asesor\u00edas ambientales y tecnol\u00f3gicas para proyectos relevantes en las estrategias nacionales del Ministerio de Obras P\u00fablicas y para la municipalidad de Vitacura"
         },
         {
-            "Titulo": "Consultor independiente",
-            "Empresa": "Newcleo",
-            "Periodo": "ene. 2012 - ene. 2022",
-            "Duracion": "10 a\u00f1os 1 mes",
-            "Ubicacion": "Chile - China",
-            "Descripcion": "Gesti\u00f3n de inversiones en criptomonedas (Bitcoin, Ethereum, ERC20 y otros) a trav\u00e9s del desarrollo de carteras \u00f3ptimas (seg\u00fan CAPM) y gesti\u00f3n de estas mismas en los Exchanges Internacionales."
+            "Cargo": "Consultor independiente",
+            "Instituci\u00f3n": "Newcleo",
+            "A\u00f1os": "2 a\u00f1os y 1 mes",
+            "Descripci\u00f3n": "Gesti\u00f3n de inversiones en criptomonedas (Bitcoin, Ethereum, ERC20 y otros) a trav\u00e9s del desarrollo de carteras, optimas (seg\u00fan CAPM) y gesti\u00f3n de \u00e9stas mismas en los Exchanges Internacionales."
         },
         {
-            "Titulo": "Jefe de Proyecto",
-            "Empresa": "Applus",
-            "Descripcion": "An\u00e1lisis ambiental y de procesos productivos"
+            "Cargo": "Jefe de Proyecto",
+            "Instituci\u00f3n": "Applus",
+            "A\u00f1os": "Desconocido",
+            "Descripci\u00f3n": "An\u00e1lisis ambiental y de procesos productivos"
         },
         {
-            "Titulo": "Jefe de Proyecto",
-            "Empresa": "ATM ingenier\u00eda",
-            "Periodo": "2004 - 2007",
-            "Duracion": "3 a\u00f1os",
-            "Ubicacion": "Santiago, Chile",
-            "Descripcion": "Crear, desarrollar y mantener sistema de manejo de toda la informaci\u00f3n ambiental de CODELCO ANDINA. Preparar presentaciones para el \u00e1rea comercial de la filial en la b\u00fasqueda de nuevos clientes."
+            "Cargo": "Jefe de Proyecto",
+            "Instituci\u00f3n": "ATM ingenier\u00eda",
+            "A\u00f1os": "3 a\u00f1os (2004-2007)",
+            "Descripci\u00f3n": "Crear, desarrollar y mantener sistema de manejo de toda la informaci\u00f3n ambiental de CODELCO ANDINA. Preparar presentaciones para el \u00e1rea comercial de la filial en la b\u00fasqueda de nuevos clientes."
         }
     ],
     "Educacion": [
         {
-            "Institucion": "Pontificia Universidad Cat\u00f3lica de Chile",
-            "Grado": "Master's degree, Ingenier\u00eda industrial",
-            "Periodo": "2013",
+            "Grado": "Master's degree",
+            "Campo de estudio": "Ingenier\u00eda industrial",
+            "Instituci\u00f3n": "Pontificia Universidad Cat\u00f3lica de Chile",
+            "A\u00f1os": "2013 - 2014",
             "Actividades y grupos": "Nataci\u00f3n"
         },
         {
-            "Institucion": "RBIS",
-            "Grado": "Chino Mandar\u00edn, Diploma",
-            "Periodo": "2010 - 2011",
-            "Actividades y grupos": "Equipo B\u00e1squetbol"
+            "Grado": "Diploma",
+            "Campo de estudio": "Chino Mandar\u00edn",
+            "Instituci\u00f3n": "RBIS",
+            "A\u00f1os": "2010 - 2011",
+            "Actividades y grupos": "Equipo Basquetball"
         }
     ],
+    "Proyectos": [],
     "Licencias y certificaciones": [
         {
-            "Titulo": "Chinese Language Certification HSK 4",
-            "Institucion": "Office of Chinese Language Council International",
-            "Expedicion": "dic. 2011",
+            "Nombre": "Chinese Language Certification HSK 4",
+            "Instituci\u00f3n": "Office of Chinese Language Council International",
+            "A\u00f1o de expedici\u00f3n": "dic. 2011",
             "ID de la credencial": "H41212"
         },
         {
-            "Titulo": "English Language Certification ETAPP",
-            "Institucion": "Instituto Chileno Norteamericano",
-            "Expedicion": "oct. 2012"
+            "Nombre": "English Language Certification ETAPP",
+            "Instituci\u00f3n": "Instituto Chileno Norteamericano",
+            "A\u00f1o de expedici\u00f3n": "oct. 2012"
         }
     ],
     "Conocimientos y aptitudes": [
         {
-            "Habilidad": "English",
+            "Nombre": "English",
             "Validaciones": 9
         },
         {
-            "Habilidad": "Chinese",
+            "Nombre": "Chinese",
             "Validaciones": 7
         }
     ],
     "Recomendaciones": [
         {
             "Nombre": "Felipe Olivos Valdivia",
-            "Relacion": "Estudiaron juntos",
-            "Fecha": "2 de junio de 2014",
-            "Contenido": "Nicol\u00e1s es una persona creativa, muy perseverante y muy capaz de resolver las dificultades que se le presenten. Su an\u00e1lisis cr\u00edtico y profundo de las cosas, le permite encontrar soluciones innovadoras a diversas situaciones. L\u00edder innato, es capaz de llevar la direcci\u00f3n del grupo sin generar conflictos y sacar lo mejor de cada uno."
+            "Cargo": "Head of Research and Development Department",
+            "Fecha": "27 de junio de 2020",
+            "Descripci\u00f3n": "Nicol\u00e1s es una persona creativa, muy perseverante y muy capaz de resolver las dificultades que se le presenten. Su an\u00e1lisis cr\u00edtico y profundo de las cosas, le permite encontrar soluciones innovadoras a diversas situaciones. L\u00edder innato, es capaz de llevar la direcci\u00f3n del grupo sin generar conflictos y sacar lo mejor de cada uno."
         },
         {
             "Nombre": "Patricio Vidal",
             "Cargo": "Gerente de Operaciones en Farmac\u00e9utica MEDCELL (Empresas Salcobrand)",
-            "Relacion": "Estudiaron juntos",
-            "Fecha": "11 de junio de 2014",
-            "Contenido": "Nicol\u00e1s es una persona con muy buen manejo comunicacional, con una creatividad excepcional y habilidades de negociaci\u00f3n destacadas. Su conocimiento de la cultura China y su lenguaje, lo hace un excelente nexo para negocios con industrias de ese pa\u00eds."
-        }
-    ],
-    "Publicaciones": [
-        {
-            "Titulo": "Introducci\u00f3n a las redes sociales chinas",
-            "Fecha": "14 jul. 2015",
-            "Contenido": "China ocupa sistemas de comunicaci\u00f3n diferentes de occidente, para entrar en el mundo Chino se deben conocer estos sistemas. Estar al margen de estas tecnolog\u00edas produce que uno se transforme en un espectador de China m\u00e1s que un..."
+            "Fecha": "11 de junio de 2020",
+            "Descripci\u00f3n": "Nicol\u00e1s es una persona con muy buen manejo comunicacional, con una creatividad excepcional y habilidades de negociaci\u00f3n destacadas. Su conocimiento de la cultura China y su lenguaje, lo hace un excelente nexo para negocios con industrias de ese pa\u00eds."
         }
     ],
     "Cursos": [
         {
-            "Titulo": "CONTABILIDAD Y AN\u00c1LISIS FINANCIERO",
-            "Codigo": "IND3210",
-            "Institucion": "Pontificia Universidad Cat\u00f3lica de Chile"
+            "Nombre": "CONTABILIDAD Y ANALISIS FINANCIERO",
+            "C\u00f3digo": "IND3210",
+            "Asociada con": "Pontificia Universidad Cat\u00f3lica de Chile"
         },
         {
-            "Titulo": "Critical Thinking"
+            "Nombre": "Critical Thinking"
         }
     ],
     "Idiomas": [
         {
-            "Idioma": "Chinese",
+            "Nombre": "Chinese",
             "Nivel": "Competencia profesional"
         },
         {
-            "Idioma": "English",
+            "Nombre": "English",
             "Nivel": "Competencia profesional completa"
         }
-    ]
+    ],
+    "Intereses": [
+        "Bill Gates",
+        "Richard Branson",
+        "Causas ben\u00e9ficas",
+        "Arte y cultura",
+        "Potenciamiento econ\u00f3mico",
+        "Medio ambiente",
+        "Ciencia y tecnolog\u00eda"
+    ],
+    "Edad_estimada": 40,
+    "Entidades_significativas": [
+        "Aldu Ingenieria",
+        "Santo",
+        "Newcleo",
+        "Pontificia Universidad Cat\u00f3lica de Chile",
+        "ATM ingenier\u00eda",
+        "Applus",
+        "Office of Chinese Language Council International",
+        "Instituto Chileno Norteamericano",
+        "Ministerio de Obras P\u00fablicas",
+        "Municipalidad de Vitacura",
+        "CODELCO ANDINA"
+    ],
+    "Instituci\u00f3n_m\u00e1s_relevante": "Aldu Ingenieria"
 }

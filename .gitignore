@@ -1,1 +1,55 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Archivos de distribución / empaquetado
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+
+# Archivos de PyCharm
+.idea/
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de log
+*.log
+
+# Archivos de ambiente
 .env
+.env.local
+.env.*.local
+
+# Archivos de Jupyter Notebook
+.ipynb_checkpoints
+
+# Archivos específicos del proyecto
+capturas_linkedin/
+captura_1/
+profile_photos/
+json_profiles/
+perfiles_completos/
+mails/
+analisis_json/
+analisis_photo/
+
+# Archivos de aider
+.aider*
