@@ -27,33 +27,71 @@ Para comenzar con AInstein LinkedIn Analyzer, sigue estos pasos:
    ```
    git clone https://github.com/tu-usuario/ainstein-linkedin-analyzer.git
    ```
+
 2. Instala las dependencias requeridas:
    ```
    pip install -r requirements.txt
    ```
-3. Configura las variables de entorno en un archivo `.env`:
+
+3. Instala Tesseract OCR en tu sistema. Las instrucciones varían según el sistema operativo:
+   - Windows: Descarga e instala desde https://github.com/UB-Mannheim/tesseract/wiki
+   - macOS: `brew install tesseract`
+   - Linux: `sudo apt-get install tesseract-ocr`
+
+4. Configura las variables de entorno en un archivo `.env`:
    ```
    OPENAI_API_KEY=tu_clave_api_de_openai
    ANTHROPIC_API_KEY=tu_clave_api_de_anthropic
    ```
-4. Prepara tus datos de entrada (URLs de perfiles de LinkedIn) en un archivo Excel llamado `prueba_url.xlsx`.
-5. Ejecuta el script principal:
+
+5. Prepara tus datos de entrada:
+   - Crea un archivo Excel llamado `prueba_url.xlsx` con una columna 'URL' que contenga las URLs de los perfiles de LinkedIn a analizar.
+   - Asegúrate de tener las credenciales de LinkedIn necesarias para el scraping.
+
+6. Configura las rutas en `config.py`:
+   - Ajusta `CHROME_PROFILE_PATH` para que apunte a tu perfil de Chrome temporal.
+   - Ajusta `EXTENSION_PATH` para que apunte a la ubicación de tu extensión de Chrome (si es necesaria).
+
+7. Asegúrate de que las siguientes carpetas existan en el directorio del proyecto:
+   - `capturas_linkedin`
+   - `captura_1`
+   - `profile_photos`
+   - `json_profiles`
+   - `web_search_results`
+   - `perfiles_completos`
+   - `mails`
+
+8. Ejecuta el script principal:
    ```
-   python linkedin_scraper.py
+   python app.py
    ```
-6. Procesa los perfiles extraídos:
-   ```
-   python linkedin_profile_analyzer.py
-   ```
-7. Genera perfiles completos con IA:
-   ```
-   python ai_profile_generator.py
-   ```
-8. Genera emails personalizados:
-   ```
-   python mails.py
-   ```
-9. Los emails generados se guardarán en la carpeta `mails`.
+
+9. Sigue las instrucciones en la consola para seleccionar el tipo de modelo (OpenAI o Anthropic) y el modelo específico que deseas utilizar.
+
+10. El script ejecutará automáticamente todos los pasos del proceso:
+    - Scraping de perfiles de LinkedIn
+    - Extracción y procesamiento de imágenes de perfil
+    - Análisis de perfiles de LinkedIn
+    - Búsqueda web de información adicional
+    - Análisis de resultados de búsqueda web
+    - Generación de perfiles completos con IA
+    - Generación de emails personalizados
+
+11. Los resultados se guardarán en las carpetas correspondientes mencionadas en el paso 7.
+
+Nota: Asegúrate de tener suficiente espacio en disco y una conexión a internet estable, ya que el proceso puede tardar dependiendo del número de perfiles a analizar.
+
+## Configuración
+
+El archivo `config.py` contiene las siguientes configuraciones importantes:
+
+- `CHROME_PROFILE_PATH`: Ruta al perfil de Chrome temporal utilizado para el scraping.
+- `EXTENSION_PATH`: Ruta a la extensión de Chrome utilizada (si es necesaria).
+- `MIN_WAIT` y `MAX_WAIT`: Tiempos de espera mínimo y máximo entre acciones para evitar detección.
+- `LINKEDIN_LOGIN_URL`: URL de inicio de sesión de LinkedIn.
+- Selectores CSS para los campos de inicio de sesión de LinkedIn.
+
+Asegúrate de ajustar estas configuraciones según tu entorno y necesidades específicas.
 
 ## Configuración
 
