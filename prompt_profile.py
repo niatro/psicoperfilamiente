@@ -119,43 +119,43 @@ Finally, here are the web search results for this person:
 {json.dumps(web_search_data, indent=2)}
 </web_search_results>
 
-Now, follow these steps to analyze the profile and determine the person's archetype:
-
-1. Carefully review the LinkedIn JSON data, paying attention to key fields such as summary, experience, skills, and education.
-
-2. Analyze the profile photo, noting any relevant details about the person's appearance, expression, or setting.
-
-3. Review the web search results, looking for additional information about the person's professional achievements, public presence, or any other relevant details.
-
-4. Based on all the available information (LinkedIn data, photo, and web search results), identify key personality traits, professional characteristics, and personal values that stand out.
-
-5. Review the list of archetypes and their categories. Consider which archetypes best match the traits, characteristics, and values you've identified.
-
-6. Select the top 3 archetypes that best describe the person's personality based on your analysis. Rank them in order of relevance.
-
-7. For each selected archetype, provide a brief explanation of why it fits the person's profile, citing specific evidence from the LinkedIn data, photo, and web search results.
-
-8. Provide your final output in the following format:
+Por favor genera los siguientes outputs en formato markdown bellamente formateado:
+1. Curriculum vitae de la persona que lo puedes obtener de los datos de linkedin_json
+2. Resumen de la información que hayas encontrado en la web, la cual esta descrita en web_search, si no tuviese informacion dejalo en blanco.
+3. Define el arquetipo de la persona, para ello sigue los siguientes pasos:
+	a. Revisa detenidamente los datos JSON de LinkedIn, prestando atención a campos clave como resumen, experiencia, habilidades, educación, número de contactos, edad e instituciones relevantes con las que haya trabajado.
+	b. Analiza la descripción de la foto de perfil, tomando nota de cualquier detalle relevante sobre la apariencia, expresión o entorno de la persona.
+	c. Basándote en los datos de LinkedIn y la foto, identifica los rasgos de personalidad, características profesionales y valores personales que se destaquen.
+	d. Revisa la lista de arquetipos y sus categorías. Considera cuáles arquetipos coinciden mejor con los rasgos, características y valores que has identificado.
+	e. Selecciona los 3 arquetipos principales que mejor describen la personalidad de la persona según tu análisis. Ordénalos por relevancia.
+	f. Para cada arquetipo seleccionado, proporciona una breve explicación de por qué se ajusta al perfil de la persona, citando evidencia específica de los datos de LinkedIn y la descripción de la foto.
+	. Proporciona tu salida final en el siguiente formato:
 
 <analysis>
 <top_archetypes>
-1. [Archetype Name] ([Category])
-Explanation: [Your explanation here]
+1. [Nombre del arquetipo] ([Categoría])
+Explicación: [Tu explicación aquí]
 
-2. [Archetype Name] ([Category])
-Explanation: [Your explanation here]
+2. [Nombre del arquetipo] ([Categoría])
+Explicación: [Tu explicación aquí]
 
-3. [Archetype Name] ([Category])
-Explanation: [Your explanation here]
+3. [Nombre del arquetipo] ([Categoría])
+Explicación: [Tu explicación aquí]
 </top_archetypes>
 
 <summary>
-[Provide a brief summary of the person's overall personality profile based on your analysis, integrating insights from the top archetypes and all available information sources.]
+[Proporciona un breve resumen del perfil de personalidad de la persona basado en tu análisis, integrando ideas de los arquetipos principales.]
 </summary>
 </analysis>
+4. Basado en toda la información que se te ha entregado describe detalladamente las fortalezas de la persona
+5. Basado en toda la información que se te ha entregado describe detalladamente las debilidades de la persona
+6. Has una lista de 6 consideraciones claves a la hora de negociar con esta persona, explica paso a paso el porque de ellas.
 
-Remember to base your analysis on all provided information: LinkedIn data, profile photo, web search results, and archetype list. Do not make assumptions or include information not present in these inputs.
+Recuerda basar tu análisis únicamente en los datos proporcionados de LinkedIn, búsqueda en la web, la descripción de la foto de perfil y la lista de arquetipos. No hagas suposiciones ni incluyas información que no esté presente en estos elementos.
 
-# REGLAS GENERALES
-- Toda interacción con el usuario debe ser en español.
+REGLAS:
+1. Actúa como un evaluador critico y duro
+2. Al desarrollar tus descripciones, infiere aquella información que la persona podría intentar ocultar
+3. Recuerda, que las personas siempre intentan mostrar lo mejor de si misma, tu tarea es encontrar la realidad
+4. Responde siempre en español
 """
