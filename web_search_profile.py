@@ -10,17 +10,17 @@ import re
 
 def get_web_search_results(name: str, 
                            company: str,
-                           max_searches: int = 5, 
+                           max_searches: int = 3, 
                            max_query_length: int = 1000, 
                            search_depth: str = "advanced",
                            max_content_length: int = 10000) -> List[Dict]:
     """
-    Realiza una búsqueda web sobre una persona basada en su nombre y empresa.
+    Realiza una búsqueda web sobre una persona basada en su nombre y empresa, excluyendo LinkedIn.
 
     Args:
     name (str): Nombre de la persona.
     company (str): Empresa de la persona.
-    max_searches (int): Número máximo de búsquedas permitidas. Por defecto es 5.
+    max_searches (int): Número máximo de búsquedas permitidas. Por defecto es 3.
     max_query_length (int): Longitud máxima de la consulta. Por defecto es 1000 caracteres.
     search_depth (str): Profundidad de la búsqueda ("basic" o "advanced"). Por defecto es "advanced".
     max_content_length (int): Longitud máxima del contenido de cada resultado. Por defecto es 10000 caracteres.
@@ -28,10 +28,17 @@ def get_web_search_results(name: str,
     Returns:
     List[Dict]: Lista de diccionarios con los resultados de la búsqueda web.
     """
-    query = f'"{name}" "{company}"'
+    query = f'"{name}" "{company}" -site:linkedin.com'
     print(f"Realizando búsqueda web con la consulta: {query}")
-    results = web_search(query, max_searches, max_query_length, search_depth, max_content_length)
-    print(f"Se encontraron {len(results)} resultados para la búsqueda web.")
+    all_results = web_search(query, max_searches * 2, max_query_length, search_depth, max_content_length)
+    
+    # Filtrar resultados para excluir LinkedIn
+    filtered_results = [result for result in all_results if 'linkedin.com' not in result['link'].lower()]
+    
+    # Limitar a 3 resultados
+    results = filtered_results[:3]
+    
+    print(f"Se encontraron {len(results)} resultados válidos para la búsqueda web.")
     return results
 
 def extract_content_from_url(url: str, max_content_length: int = 10000) -> str:
