@@ -15,7 +15,7 @@ def get_web_search_results(name: str,
                            search_depth: str = "advanced",
                            max_content_length: int = 10000) -> List[Dict]:
     """
-    Realiza una búsqueda web sobre una persona basada en su nombre y empresa, excluyendo LinkedIn.
+    Realiza una búsqueda web sobre una persona basada en su nombre y empresa.
 
     Args:
     name (str): Nombre de la persona.
@@ -28,7 +28,7 @@ def get_web_search_results(name: str,
     Returns:
     List[Dict]: Lista de diccionarios con los resultados de la búsqueda web.
     """
-    query = f'"{name}" "{company}" -site:linkedin.com'
+    query = f'"{name}" "{company}"'
     print(f"Realizando búsqueda web con la consulta: {query}")
     results = web_search(query, max_searches, max_query_length, search_depth, max_content_length)
     print(f"Se encontraron {len(results)} resultados para la búsqueda web.")
@@ -100,35 +100,31 @@ def process_profiles(json_folder: str, output_folder: str):
             with open(os.path.join(json_folder, filename), 'r', encoding='utf-8') as file:
                 profile_data = json.load(file)
             
-            # Buscar el nombre en diferentes campos posibles
             name = profile_data.get('Nombre') or profile_data.get('nombre') or profile_data.get('name', '')
-            
-            # Buscar la empresa en diferentes campos posibles
             company = profile_data.get('Empresa') or profile_data.get('empresa') or profile_data.get('company', '')
             
-            # Si no hay empresa, intentar extraerla de la experiencia
             if not company and 'Experiencia' in profile_data:
                 experiences = profile_data['Experiencia']
                 if experiences and isinstance(experiences, list) and len(experiences) > 0:
                     company = experiences[0].get('company', '')
 
+            print(f"Procesando perfil: {filename}")
+            print(f"Nombre encontrado: {name}")
+            print(f"Empresa encontrada: {company}")
+
             if name:
-                print(f"Realizando búsqueda web para {name} {'de ' + company if company else ''} (excluyendo LinkedIn)...")
+                print(f"Realizando búsqueda web para {name} {'de ' + company if company else ''}")
                 try:
                     web_results = get_web_search_results(name, company)
                     
-                    # Extraer contenido de cada URL
-                    for result in web_results:
-                        print(f"Extrayendo contenido de {result['link']}...")
-                        result['extracted_content'] = extract_content_from_url(result['link'])
-                        # Pausa aleatoria para evitar ser bloqueado
-                        time.sleep(random.uniform(1, 3))
-                    
-                    output_filename = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}_web_search.json")
-                    with open(output_filename, 'w', encoding='utf-8') as outfile:
-                        json.dump(web_results, outfile, indent=4, ensure_ascii=False)
-                    
-                    print(f"Resultados de búsqueda web guardados en {output_filename}")
+                    if web_results:
+                        output_filename = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}_web_search.json")
+                        with open(output_filename, 'w', encoding='utf-8') as outfile:
+                            json.dump(web_results, outfile, indent=4, ensure_ascii=False)
+                        
+                        print(f"Resultados de búsqueda web guardados en {output_filename}")
+                    else:
+                        print(f"No se encontraron resultados para {name}")
                 except Exception as e:
                     print(f"Error durante la búsqueda web para {name}: {str(e)}")
             else:

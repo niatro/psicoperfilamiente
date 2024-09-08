@@ -1,6 +1,11 @@
-import requests
-from bs4 import BeautifulSoup
+import os
+from dotenv import load_dotenv
+from tavily import TavilyClient
 from typing import List, Dict
+
+load_dotenv()
+tavily_api_key = os.getenv('TAVILY_API_KEY')
+tavily_client = TavilyClient(api_key=tavily_api_key)
 
 def web_search(query: str, 
                max_searches: int = 3, 
@@ -8,45 +13,36 @@ def web_search(query: str,
                search_depth: str = "advanced",
                max_content_length: int = 5000) -> List[Dict]:
     """
-    Realiza una búsqueda web básica utilizando Google.
+    Realiza una búsqueda web utilizando TAVILY.
 
     Args:
     query (str): La consulta de búsqueda.
     max_searches (int): Número máximo de resultados a devolver.
     max_query_length (int): Longitud máxima de la consulta.
-    search_depth (str): Profundidad de la búsqueda (no se utiliza en esta implementación básica).
+    search_depth (str): Profundidad de la búsqueda ("basic" o "advanced").
     max_content_length (int): Longitud máxima del contenido de cada resultado.
 
     Returns:
     List[Dict]: Lista de diccionarios con los resultados de la búsqueda web.
     """
-    query = query[:max_query_length]  # Limitar la longitud de la consulta
-    url = f"https://www.google.com/search?q={query}"
+    query = query[:max_query_length]
     
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-    
-    response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    
-    results = []
-    for g in soup.find_all('div', class_='g')[:max_searches]:
-        anchor = g.find('a')
-        if anchor:
-            link = anchor['href']
-            title = anchor.find('h3')
-            title = title.text if title else "Sin título"
-            snippet = g.find('div', class_='VwiC3b')
-            snippet = snippet.text if snippet else "Sin descripción"
-            
-            content = f"{title}\n\n{snippet}"
-            content = content[:max_content_length]  # Limitar la longitud del contenido
+    try:
+        response = tavily_client.search(query=query, search_depth=search_depth, max_results=max_searches)
+        
+        results = []
+        for result in response['results']:
+            content = f"{result['title']}\n\n{result['content']}"
+            content = content[:max_content_length]
             
             results.append({
-                "title": title,
-                "link": link,
+                "title": result['title'],
+                "link": result['url'],
                 "content": content
             })
-    
-    return results
+        
+        print(f"Se encontraron {len(results)} resultados para la búsqueda: {query}")
+        return results
+    except Exception as e:
+        print(f"Error al realizar la búsqueda web con TAVILY: {e}")
+        return []
