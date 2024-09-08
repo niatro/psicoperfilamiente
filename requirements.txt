@@ -9,3 +9,4 @@
  requests
 requests
 beautifulsoup4
+tavily-python
