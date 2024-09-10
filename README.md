@@ -117,11 +117,13 @@ AInstein LinkedIn Analyzer se compone de los siguientes componentes principales:
 Para comenzar con AInstein LinkedIn Analyzer, sigue estos pasos:
 
 1. Clona el repositorio:
+
    ```
    git clone https://github.com/tu-usuario/ainstein-linkedin-analyzer.git
    ``` 
 
 2. Instala las dependencias requeridas:
+
    ```
    pip install -r requirements.txt
    ```
@@ -132,6 +134,7 @@ Para comenzar con AInstein LinkedIn Analyzer, sigue estos pasos:
    - Linux: `sudo apt-get install tesseract-ocr`
 
 4. Configura las variables de entorno en un archivo `.env`:
+
    ```
    OPENAI_API_KEY=tu_clave_api_de_openai
    ANTHROPIC_API_KEY=tu_clave_api_de_anthropic
@@ -155,6 +158,7 @@ Para comenzar con AInstein LinkedIn Analyzer, sigue estos pasos:
    - `mails`
   
 8. Ejecuta el script principal:
+
    ```
    python app.py
    ```
