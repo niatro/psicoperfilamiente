@@ -95,6 +95,99 @@ style Email fill:#FFF0F5,stroke:#DC143C,stroke-width:2px,color:black
 linkStyle default stroke:#000000,stroke-width:2px,fill:none
 ```
 
+```mermaid
+graph TD
+subgraph Input["Input"]
+A[("📊 Perfil LinkedIn")]
+P[("⚙️ Usuario y Contraseña")]
+end
+subgraph Screenshot["Screenshot"]
+C["📸 Capturador Web"]
+F[("📁 Screnshot linkedin")]
+G[("📁 Screnshot sección 1")]
+end
+subgraph Curriculum["Currículum"]
+E["🧠 Analizador de Perfiles"]
+I[("📁 Análisis perfil")]
+end
+subgraph Rostro["Rostro"]
+D["🖼️ Extractor de Imágenes"]
+H[("📁 Análisis foto")]
+end
+subgraph Psicoperfilamiento["Psicoperfilamiento"]
+J["🧠 Generador de Perfiles IA"]
+K{"🤖 Elección de IA"}
+L["🤖 GPT-4"]
+M["🤖 Claude"]
+N["📄 Generador de Perfiles"]
+O[("📁 Base de datos perfiles")]
+end
+subgraph Email["Email"]
+T["✉️ Generador de Emails IA"]
+U{"🤖 Elección de IA"}
+V["🤖 GPT-4"]
+W["🤖 Claude"]
+X[("📁 mails")]
+end
+Q["🌐 Búsqueda en web"]
+R["📝 Archetypes"]
+S["📝 Prompts de Email"]
+A -->|URLs de LinkedIn| C
+P -.->|Configuración| C
+C -->|Capturas completas| F
+C -->|Capturas parciales| G
+F -->|Análisis de captura| E
+G -->|Extracción de secciones| D
+E -->|Datos estructurados| I
+D -->|Fotos procesadas| H
+I -->|Análisis de perfil| J
+H -->|Análisis de foto| J
+J -->|Selección de modelo| K
+K -->|OpenAI| L --> N
+K -->|Anthropic| M --> N
+N -->|Emails y perfiles| O
+O -->|Perfiles completos| T
+T -->|Selección de modelo| U
+U -->|OpenAI| V --> X
+U -->|Anthropic| W --> X
+Q -.->|Análisis Web| J
+R -.->|Prompts| J
+S -.->|Prompts| T
+%% Definición de estilos
+classDef inputFile fill:#FFA07A,stroke:#333,stroke-width:2px,color:black
+classDef mainScript fill:#87CEFA,stroke:#333,stroke-width:2px,color:black
+classDef jsScript fill:#FFD700,stroke:#333,stroke-width:2px,color:black
+classDef pythonScript fill:#90EE90,stroke:#333,stroke-width:2px,color:black
+classDef outputFolder fill:#F4A460,stroke:#333,stroke-width:2px,color:black
+classDef aiScript fill:#DDA0DD,stroke:#333,stroke-width:2px,color:black
+classDef decision fill:#FFB6C1,stroke:#333,stroke-width:2px,color:black
+classDef aiModel fill:#98FB98,stroke:#333,stroke-width:2px,color:black
+classDef outputScript fill:#20B2AA,stroke:#333,stroke-width:2px,color:black
+classDef configFile fill:#DA70D6,stroke:#333,stroke-width:2px,color:black
+classDef promptFile fill:#87CEEB,stroke:#333,stroke-width:2px,color:black
+classDef webSearch fill:#90EE90,stroke:#333,stroke-width:2px,color:black
+%% Asignación de clases a nodos
+class A,P inputFile
+class C jsScript
+class D,E pythonScript
+class F,G,H,I,O,X outputFolder
+class J,T aiScript
+class K,U decision
+class L,M,V,W aiModel
+class N outputScript
+class Q webSearch
+class R,S promptFile
+%% Estilos de subgrafos con colores más claros
+style Input fill:#FFE4B5,stroke:#FF8C00,stroke-width:2px,color:black
+style Screenshot fill:#E6E6FA,stroke:#4169E1,stroke-width:2px,color:black
+style Curriculum fill:#E0FFF0,stroke:#2E8B57,stroke-width:2px,color:black
+style Rostro fill:#FFF0F5,stroke:#FF69B4,stroke-width:2px,color:black
+style Psicoperfilamiento fill:#E6E6FA,stroke:#8A2BE2,stroke-width:2px,color:black
+style Email fill:#FFF0F5,stroke:#DC143C,stroke-width:2px,color:black
+%% Estilo de las flechas
+linkStyle default stroke:#000000,stroke-width:2px,fill:none
+```
+
 ## Características 
 
 - **Scraping de Perfiles de LinkedIn**: Extrae automáticamente datos de perfiles de LinkedIn, incluyendo texto, imágenes y otra información relevante.
@@ -104,75 +197,78 @@ linkStyle default stroke:#000000,stroke-width:2px,fill:none
 
 ## Arquitectura del Sistema
   
-AInstein LinkedIn Analyzer se compone de los siguientes componentes principales:
+Psicoperfilamiento se compone de los siguientes componentes principales:
 
 1. **LinkedIn Scraper**: Responsable de extraer datos de perfiles de LinkedIn, incluyendo la captura de screenshots y extracción de texto.
 2. **Extractor de Imágenes de Perfil**: Procesa las imágenes de perfil extraídas y las prepara para un análisis posterior.
 3. **Analizador de Perfiles**: Analiza los datos extraídos del perfil y genera información estructurada sobre cada individuo.
 4. **Generador de Perfiles con IA**: Aprovecha los datos del perfil y las imágenes para generar un análisis detallado utilizando modelos de IA.
 5. **Generador de Emails con IA**: Genera emails personalizados basados en el análisis del perfil impulsado por IA.
+6. **Búsqueda Web**: Realiza búsquedas web adicionales para complementar la información del perfil de LinkedIn.
+7. **Analizador Web**: Procesa y analiza los resultados de la búsqueda web para enriquecer el perfil del usuario.
 
 ## Comenzando 
 
-Para comenzar con AInstein LinkedIn Analyzer, sigue estos pasos:
+Para comenzar con Psicoperfilamiento, sigue estos pasos:
 
 1. Clona el repositorio:
 
-   ```
-   git clone https://github.com/tu-usuario/ainstein-linkedin-analyzer.git
-   ``` 
+   ```
+   git clone https://github.com/tu-usuario/psicoperfilamiento.git
+   ``` 
 
 2. Instala las dependencias requeridas:
 
-   ```
-   pip install -r requirements.txt
-   ```
+   ```
+   pip install -r requirements.txt
+   ```
   
 3. Instala Tesseract OCR en tu sistema. Las instrucciones varían según el sistema operativo:
-   - Windows: Descarga e instala desde https://github.com/UB-Mannheim/tesseract/wiki
-   - macOS: `brew install tesseract`
-   - Linux: `sudo apt-get install tesseract-ocr`
+   - Windows: Descarga e instala desde https://github.com/UB-Mannheim/tesseract/wiki
+   - macOS: `brew install tesseract`
+   - Linux: `sudo apt-get install tesseract-ocr`
 
 4. Configura las variables de entorno en un archivo `.env`:
 
-   ```
-   OPENAI_API_KEY=tu_clave_api_de_openai
-   ANTHROPIC_API_KEY=tu_clave_api_de_anthropic
-   ```
+   ```
+   OPENAI_API_KEY=tu_clave_api_de_openai
+   ANTHROPIC_API_KEY=tu_clave_api_de_anthropic
+   ```
   
 5. Prepara tus datos de entrada:
-   - Crea un archivo Excel llamado `prueba_url.xlsx` con una columna 'URL' que contenga las URLs de los perfiles de LinkedIn a analizar.
-   - Asegúrate de tener las credenciales de LinkedIn necesarias para el scraping.
+   - Crea un archivo Excel llamado `prueba_url.xlsx` con una columna 'URL' que contenga las URLs de los perfiles de LinkedIn a analizar.
+   - Asegúrate de tener las credenciales de LinkedIn necesarias para el scraping.
 
 6. Configura las rutas en `config.py`:
-   - Ajusta `CHROME_PROFILE_PATH` para que apunte a tu perfil de Chrome temporal.
-   - Ajusta `EXTENSION_PATH` para que apunte a la ubicación de tu extensión de Chrome (si es necesaria). 
+   - Ajusta `CHROME_PROFILE_PATH` para que apunte a tu perfil de Chrome temporal.
+   - Ajusta `EXTENSION_PATH` para que apunte a la ubicación de tu extensión de Chrome (si es necesaria). 
 
 7. Asegúrate de que las siguientes carpetas existan en el directorio del proyecto:
-   - `capturas_linkedin`
-   - `captura_1`
-   - `profile_photos`
-   - `json_profiles`
-   - `web_search_results`
-   - `perfiles_completos`
-   - `mails`
-  
+   - `capturas_linkedin`
+   - `captura_1`
+   - `profile_photos`
+   - `json_profiles`
+   - `web_search_results`
+   - `perfiles_completos`
+   - `mails`
+   - `web_analysis_results`
+  
 8. Ejecuta el script principal:
 
-   ```
-   python app.py
-   ```
+   ```
+   python app.py
+   ```
 
 9. Sigue las instrucciones en la consola para seleccionar el tipo de modelo (OpenAI o Anthropic) y el modelo específico que deseas utilizar.  
 10. El script ejecutará automáticamente todos los pasos del proceso:
-    - Scraping de perfiles de LinkedIn
-    - Extracción y procesamiento de imágenes de perfil
-    - Análisis de perfiles de LinkedIn
-    - Búsqueda web de información adicional
-    - Análisis de resultados de búsqueda web
-    - Generación de perfiles completos con IA
-    - Generación de emails personalizados
-   
+    - Scraping de perfiles de LinkedIn
+    - Extracción y procesamiento de imágenes de perfil
+    - Análisis de perfiles de LinkedIn
+    - Búsqueda web de información adicional
+    - Análisis de resultados de búsqueda web
+    - Generación de perfiles completos con IA
+    - Generación de emails personalizados
+   
 11. Los resultados se guardarán en las carpetas correspondientes mencionadas en el paso 7.
 
 Nota: Asegúrate de tener suficiente espacio en disco y una conexión a internet estable, ya que el proceso puede tardar dependiendo del número de perfiles a analizar.
@@ -189,44 +285,30 @@ La configuración del proyecto se gestiona a través de los siguientes archivos:
 ## Estructura del Proyecto
 
 ```
-ainstein-linkedin-analyzer/
-
+psicoperfilamiento/
 │
-
+├── app.py
 ├── linkedin_scraper.py
-
 ├── linkedin_profile_analyzer.py
-
 ├── linkedin_profile_image_extractor.py
-
 ├── ai_profile_generator.py
-
 ├── mails.py
-
 ├── config.py
-
 ├── models.py
-
 ├── prompt_profile.py
-
 ├── prompt_email.py
-
+├── web_search_profile.py
+├── web_analyzer.py
 ├── requirements.txt
-
 ├── README.md
-
 │
-
 ├── capturas_linkedin/
-
 ├── captura_1/
-
 ├── profile_photos/
-
 ├── json_profiles/
-
+├── web_search_results/
+├── web_analysis_results/
 ├── perfiles_completos/
-
 └── mails/
 
 ```
