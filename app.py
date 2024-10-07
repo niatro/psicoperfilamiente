@@ -1,12 +1,14 @@
 import os
+import json
 import argparse
 import getpass
 from linkedin_scraper import LinkedInScraper, ScreenshotManager, main as linkedin_scraper_main
 from rich import print as rprint
 from linkedin_profile_image_extractor import LinkedInProfileImageProcessor
 from linkedin_profile_analyzer import LinkedInProfileAnalyzer
-from web_search_profile import process_profiles as web_search_process
+from web_search_tavily import main as web_search_process
 from web_analyzer import WebAnalyzer
+from web_search_tavily import main as tavily_search
 from ai_profile_generator import AIProfileGenerator
 from mails import AIEmailGenerator
 from models import MODELS
@@ -67,17 +69,24 @@ def main():
     analyzer = LinkedInProfileAnalyzer("capturas_linkedin", "json_profiles")
     analyzer.process_images()
 
-    # Web Search Profile
-    rprint("[cyan]Iniciando búsqueda web...[/cyan]")
+    # Web Search with Tavily
+    rprint("[cyan]Iniciando búsqueda web con Tavily...[/cyan]")
     try:
-        web_search_process("json_profiles", "web_search_results")
+        for filename in os.listdir("json_profiles"):
+            if filename.endswith(".json"):
+                with open(os.path.join("json_profiles", filename), 'r') as f:
+                    profile_data = json.load(f)
+                name = profile_data.get('Nombre', '')
+                company = profile_data.get('Empresa', '')
+                if name and company:
+                    tavily_search(name, company)
+                else:
+                    rprint(f"[bold yellow]Advertencia: No se pudo encontrar nombre o empresa para {filename}[/bold yellow]")
     except Exception as e:
-        rprint(f"[bold red]Error durante la búsqueda web: {str(e)}[/bold red]")
+        rprint(f"[bold red]Error durante la búsqueda web con Tavily: {str(e)}[/bold red]")
 
-    # Web Analyzer
-    rprint("[cyan]Analizando resultados de búsqueda web...[/cyan]")
-    web_analyzer = WebAnalyzer()
-    web_analyzer.process_web_search_results(model_type, model_name)
+    # El análisis web ahora se realiza dentro de la función tavily_search
+    rprint("[cyan]Análisis web completado por Tavily...[/cyan]")
 
     # AI Profile Generator
     rprint("[cyan]Realizando psicoperfilamiento...[/cyan]")
