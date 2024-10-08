@@ -96,8 +96,8 @@ def get_archetypes():
     1. Individualista: Los individualistas marchan al ritmo de su propio tambor y encuentran formas únicas de expresarse. Valoran la originalidad y rechazan las convenciones tradicionales. A veces pueden ser temperamentales y sensibles a la crítica, pero su creatividad y perspectiva única los hacen valiosos en cualquier entorno.
     """
 
-def get_archetype_analysis_prompt(json_data, photo_data, archetypes, web_search_data):
-    return f"""You will be analyzing a person's LinkedIn profile, profile photo, and web search results to determine their personality archetype. You will be provided with four inputs: LinkedIn profile data in JSON format, a description of the profile photo, a list of archetypes, and web search results.
+def get_archetype_analysis_prompt(json_data, photo_data, archetypes, person_search_data, company_search_data, person_search_file, company_search_file):
+    return f"""You will be analyzing a person's LinkedIn profile, profile photo, and web search results to determine their personality archetype. You will be provided with six inputs: LinkedIn profile data in JSON format, a description of the profile photo, a list of archetypes, web search results for the person, and web search results for their company.
 
 First, here is the LinkedIn profile data in JSON format:
 <linkedin_json>
@@ -114,15 +114,23 @@ Here is the list of archetypes grouped into 10 categories:
 {archetypes}
 </archetypes>
 
-Finally, here are the web search results for this person:
-<web_search_results>
-{json.dumps(web_search_data, indent=2)}
-</web_search_results>
+Here are the web search results for this person from the file {person_search_file}:
+<person_web_search_results>
+{person_search_data}
+</person_web_search_results>
+
+Here are the web search results for the person's company from the file {company_search_file}:
+<company_web_search_results>
+{company_search_data}
+</company_web_search_results>
 
 Por favor genera los siguientes outputs en formato markdown bellamente formateado:
 1. Curriculum vitae de la persona que lo puedes obtener de los datos de linkedin_json
-2. Resumen de la información que hayas encontrado en la web, la cual esta descrita en web_search, si no tuviese informacion dejalo en blanco.
-3. Define el arquetipo de la persona, para ello sigue los siguientes pasos:
+2. Información en la web de la persona:
+   [Analiza detalladamente la información proporcionada en person_web_search_results. Proporciona un resumen completo de la información encontrada en la web sobre la persona, incluyendo detalles relevantes de cada resultado de búsqueda. Si hay múltiples resultados, organízalos de manera coherente. Si no hay información disponible o los resultados están vacíos, indica "No se encontró información relevante sobre [nombre de la persona] en las búsquedas web proporcionadas."]
+3. Información en la web sobre la empresa:
+   [Analiza detalladamente la información proporcionada en company_web_search_results. Proporciona un resumen completo de la información encontrada en la web sobre la empresa, incluyendo detalles relevantes de cada resultado de búsqueda. Si hay múltiples resultados, organízalos de manera coherente. Si no hay información disponible o los resultados están vacíos, indica "No se encontró información relevante sobre [nombre de la empresa] en las búsquedas web proporcionadas."]
+4. Define el arquetipo de la persona, para ello sigue los siguientes pasos:
 	a. Revisa detenidamente los datos JSON de LinkedIn, prestando atención a campos clave como resumen, experiencia, habilidades, educación, número de contactos, edad e instituciones relevantes con las que haya trabajado.
 	b. Analiza la descripción de la foto de perfil, tomando nota de cualquier detalle relevante sobre la apariencia, expresión o entorno de la persona.
 	c. Basándote en los datos de LinkedIn y la foto, identifica los rasgos de personalidad, características profesionales y valores personales que se destaquen.

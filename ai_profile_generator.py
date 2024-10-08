@@ -216,10 +216,19 @@ class AIProfileGenerator:
             return "No se pudo generar el análisis de la foto debido a un error."
 
     def generate_content(self, prompt, model_type, model_name):
-        if model_type == "openai":
-            return self.generate_with_openai(prompt, model_name)
-        else:
-            return self.generate_with_anthropic(prompt, model_name)
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                if model_type == "openai":
+                    return self.generate_with_openai(prompt, model_name)
+                else:
+                    return self.generate_with_anthropic(prompt, model_name)
+            except Exception as e:
+                print(f"Intento {attempt + 1} fallido: {str(e)}")
+                if attempt == max_retries - 1:
+                    print("Se alcanzó el número máximo de intentos. Retornando None.")
+                    return None
+                time.sleep(2 ** attempt)  # Espera exponencial entre intentos
 
     def generate_with_openai(self, prompt, model_name):
         try:
@@ -233,7 +242,7 @@ class AIProfileGenerator:
             return response['choices'][0]['message']['content']
         except Exception as e:
             print(f"Error al generar contenido con OpenAI: {str(e)}")
-            return None
+            raise
 
     def generate_with_anthropic(self, prompt, model_name):
         try:
@@ -249,16 +258,20 @@ class AIProfileGenerator:
             return response.content[0].text
         except Exception as e:
             print(f"Error al generar contenido con Anthropic: {str(e)}")
-            return None
+            raise
 
     @staticmethod
     def save_profile(profile_text, output_file):
         if profile_text is None:
-            print(f"Advertencia: No se pudo guardar el perfil en {output_file} porque el texto es None.")
-            return
-        with open(output_file, 'w', encoding='utf-8') as text_file:
-            text_file.write(profile_text)
-        print(f"Perfil guardado en {output_file}")
+            error_message = "No se pudo generar el perfil. El texto del perfil es None."
+            print(f"Advertencia: {error_message}")
+            with open(output_file, 'w', encoding='utf-8') as text_file:
+                text_file.write(error_message)
+            print(f"Mensaje de error guardado en {output_file}")
+        else:
+            with open(output_file, 'w', encoding='utf-8') as text_file:
+                text_file.write(profile_text)
+            print(f"Perfil guardado en {output_file}")
 
     def process_json_files(self, json_folder, photo_folder, web_search_folder, output_folder, model_type, model_name):
         self.ensure_folders_exist()
@@ -268,7 +281,6 @@ class AIProfileGenerator:
                 json_path = os.path.join(json_folder, filename)
                 base_filename = os.path.splitext(filename)[0]
                 photo_path = os.path.join(photo_folder, f"{base_filename}_profile.png")
-                web_search_path = os.path.join(web_search_folder, f"{base_filename}_web_search.json")
                 
                 # Analizar JSON
                 with open(json_path, 'r', encoding='utf-8') as json_file:
@@ -282,16 +294,177 @@ class AIProfileGenerator:
                 photo_analysis_path = os.path.join(self.photo_analysis_folder, f"{base_filename}_photo_analysis.txt")
                 self.save_profile(photo_analysis, photo_analysis_path)
                 
-                # Leer resultados de búsqueda web
-                with open(web_search_path, 'r', encoding='utf-8') as web_search_file:
-                    web_search_data = json.load(web_search_file)
+                # Cargar resultados de búsqueda web
+                name = json_data.get('Nombre', '').replace(' ', '_')
+                company = json_data.get('Empresa', '').replace(' ', '_')
+                person_search_file = os.path.join(web_search_folder, f'{name}_person_search.json')
+                company_search_file = os.path.join(web_search_folder, f'{company}_company_search.json')
+                
+                person_search_results = self.load_search_results(person_search_file)
+                company_search_results = self.load_search_results(company_search_file)
                 
                 # Generar perfil completo
-                full_profile_prompt = get_archetype_analysis_prompt(json_data, photo_analysis, self.archetypes, web_search_data)
+                full_profile_prompt = get_archetype_analysis_prompt(json_data, photo_analysis, self.archetypes, person_search_results, company_search_results, person_search_file, company_search_file)
                 full_profile = self.generate_content(full_profile_prompt, model_type, model_name)
                 
                 output_file = os.path.join(output_folder, f"{base_filename}_full_profile.txt")
                 self.save_profile(full_profile, output_file)
+
+    def load_search_results(self, file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            results = []
+            for result in data.get('results', []):
+                title = result.get('title', 'Sin título')
+                summary = result.get('snippet') or result.get('content') or 'Sin resumen disponible'
+                url = result.get('url', 'URL no disponible')
+                results.append(f"Título: {title}\nResumen: {summary}\nURL: {url}")
+            
+            if results:
+                return "\n\n".join(results)
+            else:
+                return "No se encontraron resultados de búsqueda relevantes."
+        except FileNotFoundError:
+            return f"No se encontró el archivo de resultados de búsqueda: {file_path}"
+        except json.JSONDecodeError:
+            return f"Error al decodificar el archivo JSON de resultados de búsqueda: {file_path}"
+        except Exception as e:
+            return f"Error inesperado al cargar los resultados de búsqueda de {file_path}: {str(e)}"
+
+    def summarize_results(self, results):
+        summaries = []
+        for result in results.split("\n\n"):
+            lines = result.split("\n")
+            if len(lines) > 1:
+                title = lines[0].replace("Título: ", "")
+                summary = lines[1].replace("Resumen: ", "")
+                summaries.append(f"{title}: {summary}")
+        return "\n".join(summaries)
+
+    def filter_relevant_results(self, results, name, company):
+        relevant_results = []
+        name_parts = name.lower().split()
+        company_lower = company.lower()
+        
+        for result in results.split("\n\n"):
+            if any(part in result.lower() for part in name_parts) or company_lower in result.lower():
+                relevant_results.append(result)
+        
+        if relevant_results:
+            return "\n\n".join(relevant_results)
+        else:
+            return "No se encontraron resultados relevantes, pero aquí están los detalles de los resultados obtenidos:\n\n" + results
+
+    def process_json_files(self, json_folder, photo_folder, web_search_folder, output_folder, model_type, model_name):
+        self.ensure_folders_exist()
+        
+        for filename in os.listdir(json_folder):
+            if filename.endswith(".json"):
+                json_path = os.path.join(json_folder, filename)
+                base_filename = os.path.splitext(filename)[0]
+                photo_path = os.path.join(photo_folder, f"{base_filename}_profile.png")
+                
+                try:
+                    # Analizar JSON
+                    with open(json_path, 'r', encoding='utf-8') as json_file:
+                        json_data = json.load(json_file)
+                    json_analysis = self.analyze_json(json_path, model_type, model_name)
+                    json_analysis_path = os.path.join(self.json_analysis_folder, f"{base_filename}_json_analysis.txt")
+                    self.save_profile(json_analysis, json_analysis_path)
+                    
+                    # Analizar foto
+                    photo_analysis = self.analyze_photo(photo_path, model_type, model_name)
+                    photo_analysis_path = os.path.join(self.photo_analysis_folder, f"{base_filename}_photo_analysis.txt")
+                    self.save_profile(photo_analysis, photo_analysis_path)
+                    
+                    # Cargar resultados de búsqueda web
+                    name = json_data.get('Nombre', '').replace(' ', '_')
+                    company = json_data.get('Empresa', '').replace(' ', '_')
+                    person_search_file = os.path.join(web_search_folder, f'{name}_person_search.json')
+                    company_search_file = os.path.join(web_search_folder, f'{company}_company_search.json')
+                    
+                    person_search_results = self.load_search_results(person_search_file)
+                    company_search_results = self.load_search_results(company_search_file)
+                    
+                    # Filtrar resultados relevantes
+                    filtered_person_results = self.filter_relevant_results(person_search_results, json_data.get('Nombre', ''), json_data.get('Empresa', ''))
+                    filtered_company_results = self.filter_relevant_results(company_search_results, json_data.get('Nombre', ''), json_data.get('Empresa', ''))
+                    
+                    # Generar resumen de resultados
+                    person_summary = self.summarize_results(filtered_person_results)
+                    company_summary = self.summarize_results(filtered_company_results)
+                    
+                    # Generar perfil completo
+                    full_profile_prompt = get_archetype_analysis_prompt(json_data, photo_analysis, self.archetypes, person_summary, company_summary, person_search_file, company_search_file)
+                    full_profile = self.generate_content(full_profile_prompt, model_type, model_name)
+                    
+                    if full_profile is None:
+                        raise Exception("No se pudo generar el perfil completo")
+                    
+                    output_file = os.path.join(output_folder, f"{base_filename}_full_profile.txt")
+                    self.save_profile(full_profile, output_file)
+                    print(f"Perfil completo generado y guardado para {base_filename}")
+                except Exception as e:
+                    print(f"Error al procesar el archivo {filename}: {str(e)}")
+                    error_message = f"No se pudo generar el perfil completo debido a un error: {str(e)}"
+                    error_file = os.path.join(output_folder, f"{base_filename}_error.txt")
+                    with open(error_file, 'w', encoding='utf-8') as f:
+                        f.write(error_message)
+                    print(f"Se ha guardado un archivo de error para {base_filename}")
+
+    def process_json_files(self, json_folder, photo_folder, web_search_folder, output_folder, model_type, model_name):
+        self.ensure_folders_exist()
+        
+        for filename in os.listdir(json_folder):
+            if filename.endswith(".json"):
+                json_path = os.path.join(json_folder, filename)
+                base_filename = os.path.splitext(filename)[0]
+                photo_path = os.path.join(photo_folder, f"{base_filename}_profile.png")
+                
+                try:
+                    # Analizar JSON
+                    with open(json_path, 'r', encoding='utf-8') as json_file:
+                        json_data = json.load(json_file)
+                    json_analysis = self.analyze_json(json_path, model_type, model_name)
+                    json_analysis_path = os.path.join(self.json_analysis_folder, f"{base_filename}_json_analysis.txt")
+                    self.save_profile(json_analysis, json_analysis_path)
+                    
+                    # Analizar foto
+                    photo_analysis = self.analyze_photo(photo_path, model_type, model_name)
+                    photo_analysis_path = os.path.join(self.photo_analysis_folder, f"{base_filename}_photo_analysis.txt")
+                    self.save_profile(photo_analysis, photo_analysis_path)
+                    
+                    # Cargar resultados de búsqueda web
+                    name = json_data.get('Nombre', '').replace(' ', '_')
+                    company = json_data.get('Empresa', '').replace(' ', '_')
+                    person_search_file = os.path.join(web_search_folder, f'{name}_person_search.json')
+                    company_search_file = os.path.join(web_search_folder, f'{company}_company_search.json')
+                    
+                    person_search_results = self.load_search_results(person_search_file)
+                    company_search_results = self.load_search_results(company_search_file)
+                    
+                    # Filtrar resultados relevantes
+                    filtered_person_results = self.filter_relevant_results(person_search_results, json_data.get('Nombre', ''), json_data.get('Empresa', ''))
+                    filtered_company_results = self.filter_relevant_results(company_search_results, json_data.get('Nombre', ''), json_data.get('Empresa', ''))
+                    
+                    # Generar perfil completo
+                    full_profile_prompt = get_archetype_analysis_prompt(json_data, photo_analysis, self.archetypes, filtered_person_results, filtered_company_results, person_search_file, company_search_file)
+                    full_profile = self.generate_content(full_profile_prompt, model_type, model_name)
+                    
+                    if full_profile is None:
+                        raise Exception("No se pudo generar el perfil completo")
+                    
+                    output_file = os.path.join(output_folder, f"{base_filename}_full_profile.txt")
+                    self.save_profile(full_profile, output_file)
+                    print(f"Perfil completo generado y guardado para {base_filename}")
+                except Exception as e:
+                    print(f"Error al procesar el archivo {filename}: {str(e)}")
+                    error_message = f"No se pudo generar el perfil completo debido a un error: {str(e)}"
+                    error_file = os.path.join(output_folder, f"{base_filename}_error.txt")
+                    with open(error_file, 'w', encoding='utf-8') as f:
+                        f.write(error_message)
+                    print(f"Se ha guardado un archivo de error para {base_filename}")
 
 def main():
     generator = AIProfileGenerator()

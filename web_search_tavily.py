@@ -41,20 +41,27 @@ def save_results(results, filename):
 def main(name, company):
     print(f"Buscando información sobre: {name} de {company}")
     
+    # Asegurarse de que la carpeta 'web_search_results' exista
+    if not os.path.exists('web_search_results'):
+        os.makedirs('web_search_results')
+        print("Carpeta 'web_search_results' creada.")
+    
     # Primera búsqueda: persona y empresa
     person_query = f"{name} {company} -site:linkedin.com"
     person_results = search_with_tavily(person_query)
-    save_results(person_results, os.path.join('web_search_results', f'{name.replace(" ", "_")}_person_search.json'))
+    person_file = os.path.join('web_search_results', f'{name.replace(" ", "_")}_person_search.json')
+    save_results(person_results, person_file)
     
     # Segunda búsqueda: empresa (con manejo de consultas cortas)
     company_query = f"{company} -site:linkedin.com" if len(company) >= 5 else f"{company} company -site:linkedin.com"
     company_results = search_with_tavily(company_query)
-    save_results(company_results, os.path.join('web_search_results', f'{company.replace(" ", "_")}_company_search.json'))
+    company_file = os.path.join('web_search_results', f'{company.replace(" ", "_")}_company_search.json')
+    save_results(company_results, company_file)
     
-    if person_results is not None or company_results is not None:
-        print("Los resultados han sido guardados en la carpeta 'web_search_results'")
+    if os.path.exists(person_file) and os.path.exists(company_file):
+        print(f"Los resultados han sido guardados en:\n{person_file}\n{company_file}")
     else:
-        print("No se pudieron obtener resultados debido a errores en las búsquedas.")
+        print("No se pudieron guardar todos los resultados. Verifique los archivos en 'web_search_results'.")
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

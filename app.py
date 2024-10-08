@@ -1,22 +1,16 @@
 import os
 import json
-import argparse
-import getpass
-from linkedin_scraper import LinkedInScraper, ScreenshotManager, main as linkedin_scraper_main
 from rich import print as rprint
+from rich.console import Console
+from rich.panel import Panel
+from rich.prompt import Prompt
+from linkedin_scraper import main as linkedin_scraper_main
 from linkedin_profile_image_extractor import LinkedInProfileImageProcessor
 from linkedin_profile_analyzer import LinkedInProfileAnalyzer
-from web_search_tavily import main as web_search_process
-from web_analyzer import WebAnalyzer
 from web_search_tavily import main as tavily_search
 from ai_profile_generator import AIProfileGenerator
 from mails import AIEmailGenerator
 from models import MODELS
-
-from rich.console import Console
-from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, TextColumn
-from rich.prompt import Prompt
 
 console = Console()
 
@@ -59,41 +53,57 @@ def main():
     rprint("[cyan]Scraping de LinkedIn...[/cyan]")
     linkedin_scraper_main()
 
-    # LinkedIn Profile Image Extractor
     rprint("[cyan]Extrayendo imágenes de perfil...[/cyan]")
     image_processor = LinkedInProfileImageProcessor("captura_1", "profile_photos")
     image_processor.process_images()
 
-    # LinkedIn Profile Analyzer
     rprint("[cyan]Analizando perfiles de LinkedIn...[/cyan]")
     analyzer = LinkedInProfileAnalyzer("capturas_linkedin", "json_profiles")
     analyzer.process_images()
 
-    # Web Search with Tavily
     rprint("[cyan]Iniciando búsqueda web con Tavily...[/cyan]")
+    
+    # Asegurarse de que la carpeta 'web_search_results' exista
+    if not os.path.exists("web_search_results"):
+        os.makedirs("web_search_results")
+        rprint("[green]Carpeta 'web_search_results' creada.[/green]")
+    
     try:
         for filename in os.listdir("json_profiles"):
             if filename.endswith(".json"):
-                with open(os.path.join("json_profiles", filename), 'r') as f:
+                with open(os.path.join("json_profiles", filename), 'r', encoding='utf-8') as f:
                     profile_data = json.load(f)
                 name = profile_data.get('Nombre', '')
                 company = profile_data.get('Empresa', '')
+                if not name or not company:
+                    # Intenta buscar en otras claves posibles
+                    for key in profile_data.keys():
+                        if 'nombre' in key.lower():
+                            name = profile_data[key]
+                        elif 'empresa' in key.lower():
+                            company = profile_data[key]
+                
                 if name and company:
+                    rprint(f"[cyan]Buscando información para: {name} de {company}[/cyan]")
                     tavily_search(name, company)
+                    
+                    # Verificar si se crearon los archivos JSON
+                    person_file = os.path.join('web_search_results', f'{name.replace(" ", "_")}_person_search.json')
+                    company_file = os.path.join('web_search_results', f'{company.replace(" ", "_")}_company_search.json')
+                    
+                    if os.path.exists(person_file) and os.path.exists(company_file):
+                        rprint(f"[green]Archivos JSON creados para {name} y {company}[/green]")
+                    else:
+                        rprint(f"[bold yellow]Advertencia: No se encontraron archivos JSON para {name} o {company}[/bold yellow]")
                 else:
-                    rprint(f"[bold yellow]Advertencia: No se pudo encontrar nombre o empresa para {filename}[/bold yellow]")
+                    rprint(f"[bold yellow]Advertencia: No se pudo encontrar nombre o empresa para {filename}. Contenido del archivo: {json.dumps(profile_data, indent=2)}[/bold yellow]")
     except Exception as e:
         rprint(f"[bold red]Error durante la búsqueda web con Tavily: {str(e)}[/bold red]")
 
-    # El análisis web ahora se realiza dentro de la función tavily_search
-    rprint("[cyan]Análisis web completado por Tavily...[/cyan]")
-
-    # AI Profile Generator
     rprint("[cyan]Realizando psicoperfilamiento...[/cyan]")
     profile_generator = AIProfileGenerator()
     profile_generator.process_json_files("json_profiles", "profile_photos", "web_search_results", "perfiles_completos", model_type, model_name)
 
-    # Email Generator
     rprint("[cyan]Generando emails personalizados...[/cyan]")
     email_generator = AIEmailGenerator()
     email_generator.process_profiles("perfiles_completos", "mails", model_type, model_name)
