@@ -75,28 +75,33 @@ def main():
                     profile_data = json.load(f)
                 name = profile_data.get('Nombre', '')
                 company = profile_data.get('Empresa', '')
-                if not name or not company:
-                    # Intenta buscar en otras claves posibles
+                # Intenta buscar en otras claves posibles si no se encuentran 'Nombre' o 'Empresa'
+                if not name:
                     for key in profile_data.keys():
                         if 'nombre' in key.lower():
                             name = profile_data[key]
-                        elif 'empresa' in key.lower():
+                            break
+                if not company:
+                    for key in profile_data.keys():
+                        if 'empresa' in key.lower():
                             company = profile_data[key]
+                            break
                 
-                if name and company:
-                    rprint(f"[cyan]Buscando información para: {name} de {company}[/cyan]")
-                    tavily_search(name, company)
-                    
-                    # Verificar si se crearon los archivos JSON
-                    person_file = os.path.join('web_search_results', f'{name.replace(" ", "_")}_person_search.json')
-                    company_file = os.path.join('web_search_results', f'{company.replace(" ", "_")}_company_search.json')
-                    
-                    if os.path.exists(person_file) and os.path.exists(company_file):
-                        rprint(f"[green]Archivos JSON creados para {name} y {company}[/green]")
-                    else:
-                        rprint(f"[bold yellow]Advertencia: No se encontraron archivos JSON para {name} o {company}[/bold yellow]")
-                else:
+                if not name or not company:
                     rprint(f"[bold yellow]Advertencia: No se pudo encontrar nombre o empresa para {filename}. Contenido del archivo: {json.dumps(profile_data, indent=2)}[/bold yellow]")
+                    continue
+
+                rprint(f"[cyan]Buscando información para: {name} de {company}[/cyan]")
+                tavily_search(name, company)
+                
+                # Verificar si se crearon los archivos JSON
+                person_file = os.path.join('web_search_results', f'{name.replace(" ", "_")}_person_search.json')
+                company_file = os.path.join('web_search_results', f'{company.replace(" ", "_")}_company_search.json')
+                
+                if os.path.exists(person_file) and os.path.exists(company_file):
+                    rprint(f"[green]Archivos JSON creados para {name} y {company}[/green]")
+                else:
+                    rprint(f"[bold yellow]Advertencia: No se encontraron archivos JSON para {name} o {company}[/bold yellow]")
     except Exception as e:
         rprint(f"[bold red]Error durante la búsqueda web con Tavily: {str(e)}[/bold red]")
 

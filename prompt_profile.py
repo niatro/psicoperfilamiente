@@ -127,9 +127,13 @@ Here are the web search results for the person's company from the file {company_
 Por favor genera los siguientes outputs en formato markdown bellamente formateado:
 1. Curriculum vitae de la persona que lo puedes obtener de los datos de linkedin_json
 2. Información en la web de la persona:
-   [Analiza detalladamente la información proporcionada en person_web_search_results. Proporciona un resumen completo de la información encontrada en la web sobre la persona, incluyendo detalles relevantes de cada resultado de búsqueda. Si hay múltiples resultados, organízalos de manera coherente. Si no hay información disponible o los resultados están vacíos, indica "No se encontró información relevante sobre [nombre de la persona] en las búsquedas web proporcionadas."]
+   <person_web_search_results>
+   {json.dumps(person_search_data, indent=2)}
+   </person_web_search_results>
 3. Información en la web sobre la empresa:
-   [Analiza detalladamente la información proporcionada en company_web_search_results. Proporciona un resumen completo de la información encontrada en la web sobre la empresa, incluyendo detalles relevantes de cada resultado de búsqueda. Si hay múltiples resultados, organízalos de manera coherente. Si no hay información disponible o los resultados están vacíos, indica "No se encontró información relevante sobre [nombre de la empresa] en las búsquedas web proporcionadas."]
+   <company_web_search_results>
+   {json.dumps(company_search_data, indent=2)}
+   </company_web_search_results>
 4. Define el arquetipo de la persona, para ello sigue los siguientes pasos:
 	a. Revisa detenidamente los datos JSON de LinkedIn, prestando atención a campos clave como resumen, experiencia, habilidades, educación, número de contactos, edad e instituciones relevantes con las que haya trabajado.
 	b. Analiza la descripción de la foto de perfil, tomando nota de cualquier detalle relevante sobre la apariencia, expresión o entorno de la persona.

@@ -295,8 +295,8 @@ class AIProfileGenerator:
                 self.save_profile(photo_analysis, photo_analysis_path)
                 
                 # Cargar resultados de búsqueda web
-                name = json_data.get('Nombre', '').replace(' ', '_')
-                company = json_data.get('Empresa', '').replace(' ', '_')
+                name = json_data.get('Nombre', '').strip().replace(' ', '_')
+                company = json_data.get('Empresa', '').strip().replace(' ', '_')
                 person_search_file = os.path.join(web_search_folder, f'{name}_person_search.json')
                 company_search_file = os.path.join(web_search_folder, f'{company}_company_search.json')
                 
@@ -317,9 +317,9 @@ class AIProfileGenerator:
             results = []
             for result in data.get('results', []):
                 title = result.get('title', 'Sin título')
-                summary = result.get('snippet') or result.get('content') or 'Sin resumen disponible'
+                content = result.get('content', 'Sin contenido disponible')
                 url = result.get('url', 'URL no disponible')
-                results.append(f"Título: {title}\nResumen: {summary}\nURL: {url}")
+                results.append(f"Título: {title}\nContenido: {content}\nURL: {url}")
             
             if results:
                 return "\n\n".join(results)

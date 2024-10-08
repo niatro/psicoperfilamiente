@@ -33,8 +33,8 @@
             "raw_content": null
         },
         {
-            "title": "Investment Banking - WOOD & Company",
-            "url": "https://wood.com/services/investment-banking/",
+            "title": "WOOD & Company | We are a local Central European company with global ...",
+            "url": "https://wood.com/services/",
             "content": "WOOD & Company is a member of Oaklins, a global team of 850+ financial advisory professionals in 45 countries providing M&A, growth equity, ECM, debt advisory and corporate finance services to support entrepreneurs, corporates and investors in reaching their goals.. Our membership of Oaklins, helps us to blur boundaries and enables us to efficiently execute cross-border transactions, finding ...",
             "score": 0.984516,
             "raw_content": null
@@ -44,13 +44,6 @@
             "url": "https://careers.woodplc.com/early-careers",
             "content": "Watch on YouTube. We recognise that early career professionals are key to our future. At Wood, you'll engage in stimulating and ambitious projects, stretching your abilities and fostering essential leadership qualities. But you won't be alone. Our experienced leaders will provide guidance, support and mentorship, and you'll connect with a ...",
             "score": 0.97702265,
-            "raw_content": null
-        },
-        {
-            "title": "Reclaimed Barn Beams | Pioneer Wood Company | Sutherland Springs",
-            "url": "https://www.pioneerwoodcompany.com/",
-            "content": "And Pioneer Wood Company is an 1800s Mercantile & Antiques Shop - located on hwy 87 in La Vernia, Tx at 125 Maldonado Ln, specializing in 1700s and 1800s antiques, Amish-made foods and treats, farmhouse gifts, Victorian-inspired jewelry, and old fashioned candy and snacks. See Mercantile & Antiques Shop. Pioneer Wood Company sells authentic ...",
-            "score": 0.9735945,
             "raw_content": null
         },
         {
@@ -68,6 +61,13 @@
             "raw_content": null
         },
         {
+            "title": "About Timber Products - Our History, Locations & Approach",
+            "url": "https://timberproducts.com/about-us/",
+            "content": "Company Overview. Founded in 1918, Timber Products produces a diversified range of wood products. Best known for its hardwood plywood, the company is committed to environmental sustainability and offers a fully integrated approach to manufacturing with 8 manufacturing facilities, an import division, and a nationwide logistics and transportation division.",
+            "score": 0.9294404,
+            "raw_content": null
+        },
+        {
             "title": "Arbor Wood Co. | Thermally Modified Wood",
             "url": "https://arborwoodco.com/",
             "content": "The performance-driven choice Arbor Wood Co. produces thermally modified wood for a variety of outdoor and indoor applications including siding, decking, and architectural millwork.Our process starts by using domestically and responsibly sourced wood which is thermally modified using only heat and steam. The result is a high-quality, performance-driven material, which sustains the natural ...",
@@ -75,5 +75,5 @@
             "raw_content": null
         }
     ],
-    "response_time": 1.89
+    "response_time": 1.86
 }
