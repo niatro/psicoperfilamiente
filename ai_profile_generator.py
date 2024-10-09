@@ -7,6 +7,8 @@ import re
 from dotenv import load_dotenv
 from anthropic import Anthropic
 from models import MODELS
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from PIL import Image
 from prompt_profile import (
     get_archetype_analysis_prompt,
     get_archetypes,
@@ -48,6 +50,9 @@ class AIProfileGenerator:
         self.models = MODELS
         self.archetypes = get_archetypes()
         self.ensure_folders_exist()
+        # Inicializar el modelo y procesador BLIP
+        self.blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+        self.blip_model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
     def ensure_folders_exist(self):
         pass  # Ya no necesitamos crear carpetas adicionales
@@ -99,11 +104,13 @@ class AIProfileGenerator:
             return "No se encontró la foto de perfil."
         
         try:
-            # Aquí debes implementar la lógica para generar una descripción de la foto.
-            # Por ejemplo, podrías utilizar un servicio externo o modelo que analice la imagen y devuelva una descripción.
-            # Para efectos de este ejemplo, proporcionaremos una descripción fija.
-            photo_description = "La foto muestra a un hombre de mediana edad, sonriendo ligeramente, vestido con camisa y chaqueta informal, con un fondo urbano."
-
+            # Abrir la imagen
+            image = Image.open(photo_path).convert('RGB')
+            # Generar la descripción de la foto
+            inputs = self.blip_processor(image, return_tensors="pt")
+            out = self.blip_model.generate(**inputs)
+            photo_description = self.blip_processor.decode(out[0], skip_special_tokens=True)
+    
             # Generar el análisis de la foto usando el prompt actualizado
             prompt = get_photo_analysis_prompt(photo_description)
             photo_analysis = self.generate_content(prompt, model_type, model_name)
@@ -111,7 +118,7 @@ class AIProfileGenerator:
         except Exception as e:
             print(f"Error al analizar la foto: {str(e)}")
             return "No se pudo analizar la foto debido a un error."
-
+        
     def analyze_json(self, json_data, model_type, model_name):
         prompt = get_linkedin_profile_prompt(json.dumps(json_data, indent=4))
         
