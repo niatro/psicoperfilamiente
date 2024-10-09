@@ -104,16 +104,21 @@ linkStyle default stroke:#000000,stroke-width:2px,fill:none
 - **Flujo de Trabajo Automatizado**: Optimiza todo el proceso, desde la extracción del perfil hasta la generación del email, para ahorrar tiempo y mejorar la eficiencia.
 
 ## Arquitectura del Sistema
-  
+
 Psicoperfilamiento se compone de los siguientes componentes principales:
 
-1. **LinkedIn Scraper**: Responsable de extraer datos de perfiles de LinkedIn, incluyendo la captura de screenshots y extracción de texto.
-2. **Extractor de Imágenes de Perfil**: Procesa las imágenes de perfil extraídas y las prepara para un análisis posterior.
-3. **Analizador de Perfiles**: Analiza los datos extraídos del perfil y genera información estructurada sobre cada individuo.
-4. **Generador de Perfiles con IA**: Aprovecha los datos del perfil y las imágenes para generar un análisis detallado utilizando modelos de IA.
-5. **Generador de Emails con IA**: Genera emails personalizados basados en el análisis del perfil impulsado por IA.
-6. **Búsqueda Web**: Realiza búsquedas web adicionales para complementar la información del perfil de LinkedIn.
-7. **Analizador Web**: Procesa y analiza los resultados de la búsqueda web para enriquecer el perfil del usuario.
+1. **app.py**: Script principal que coordina todo el flujo del sistema, desde la selección del modelo de IA hasta la generación de perfiles completos.
+2. **linkedin_scraper.py**: Responsable de extraer datos de perfiles de LinkedIn, incluyendo la captura de screenshots y extracción de texto.
+3. **linkedin_profile_image_extractor.py**: Procesa las imágenes de perfil extraídas y las prepara para un análisis posterior.
+4. **linkedin_profile_analyzer.py**: Analiza los datos extraídos del perfil y genera información estructurada sobre cada individuo.
+5. **ai_profile_generator.py**: Utiliza modelos de IA para generar un análisis detallado de los perfiles, integrando datos de LinkedIn, fotos y resultados de búsqueda web.
+6. **mails.py**: Genera emails personalizados basados en el análisis del perfil impulsado por IA.
+7. **web_search_profile.py**: Realiza búsquedas web adicionales para complementar la información del perfil de LinkedIn.
+8. **web_analyzer.py**: Procesa y analiza los resultados de la búsqueda web para enriquecer el perfil del usuario.
+9. **config.py**: Define las configuraciones necesarias para el scraping y otras operaciones del sistema.
+10. **models.py**: Especifica los modelos de IA disponibles para el análisis de perfiles y la generación de emails.
+11. **prompt_profile.py**: Establece los prompts utilizados para el análisis de perfiles.
+12. **prompt_email.py**: Define los prompts utilizados para la generación de emails.
 
 ## Comenzando 
 

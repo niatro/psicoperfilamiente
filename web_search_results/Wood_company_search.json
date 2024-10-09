@@ -5,10 +5,38 @@
     "images": [],
     "results": [
         {
+            "title": "WOOD & Company | Homepage",
+            "url": "https://wood.com/",
+            "content": "### WOOD & Company Blockchain+ WOOD & Company enters with a new real estate fund into the logistics segment. Inside information - WOOD SPAC One completed the acquisition of a stake in target company Footshop today. WOOD & Company Real Estate Fund acquires Green Point Jul 26, 2022 WOOD & Company Financial Services, a.s. Nám. WOOD & Company Financial Services, a.s. 16 Berkeley Street, London, W1J 8DZEmail: info@wood.com WOOD & Company is a member of Oaklins, a global team of 850+ financial advisory professionals in 45 countries providing M&A, growth equity, ECM, debt advisory and corporate finance services to support entrepreneurs, corporates and investors in reaching their goals. (WOOD & Company Financial Services, a.",
+            "score": 0.99719906,
+            "raw_content": null
+        },
+        {
+            "title": "WOOD & Company | Hlavná stránka",
+            "url": "https://wood.sk/",
+            "content": "WOOD & Company je členom Oaklins, globálneho tímu s viac ako 850 odborníkmi na finančné poradenstvo.Nachádzajú sa v 45 krajinách a poskytujú služby v oblasti fúzií a akvizícií, rastového kapitálu, ECM, dlhového poradenstva a podnikového financovania na podporu podnikateľov, spoločností a investorov pri dosahovaní ich cieľov.",
+            "score": 0.9966102,
+            "raw_content": null
+        },
+        {
+            "title": "WOOD & Company | Hlavní stránka",
+            "url": "https://wood.cz/",
+            "content": "WOOD & Company je členem Oaklins, globálního týmu více než 850 odborníků na finanční poradenství ve 45 zemích, kteří poskytují služby v oblasti fúzí a akvizic, růstového kapitálu, ECM, dluhového poradenství a podnikových financí a podporují tak podnikatele, společnosti a investory při dosahování jejich cílů.. Naše členství v Oaklins, nám pomáhá stírat ...",
+            "score": 0.99455196,
+            "raw_content": null
+        },
+        {
+            "title": "Wood Company",
+            "url": "https://www.woodcompany.com/",
+            "content": "WOOD COMPANY ITALY - Via Carlo Zatti 21 - 42122 Reggio Emilia Italy - VAT IT02873800359 - Tel: +39.05221622009 - Mob. / Whatsapp: +39.3294056900 - Email: sales@woodcompany.com - It is forbidden to use or duplicate the pictures, the text and the web code without prior notice - - all right reserved -1999-2021",
+            "score": 0.9928509,
+            "raw_content": null
+        },
+        {
             "title": "WOOD & Company | About us",
             "url": "https://wood.com/about/",
             "content": "WOOD & Company is a member of Oaklins, a global team of 850+ financial advisory professionals in 45 countries providing M&A, growth equity, ECM, debt advisory and corporate finance services to support entrepreneurs, corporates and investors in reaching their goals.",
-            "score": 0.991938,
+            "score": 0.99193794,
             "raw_content": null
         },
         {
@@ -23,13 +51,6 @@
             "url": "https://careers.woodplc.com/",
             "content": "Our vision\nWe are the world's engineers, the company that makes the world a better place, the company that delivers the change the world needs most, and the company that doesn’t just talk sustainability but makes it real for our clients and ourselves – because our ideas, our expertise, and our ability to scale solutions enables us to transform the world.\n Our strategy\nOur strategic pillars are the bedrock of our success and aligned to the greatest needs of our three primary stakeholders - our people, our clients, and our shareholders.\n Our recruitment process\nOur approach to recruitment reflects our inspired culture, and we know that a fair hiring process and a great candidate experience ensures we attract the very best to Team Wood.\n We are driven by a passion to make a real difference for our people, our clients, our communities and for future generations.\n Driving performance excellence is about being results focused, simplifying and improving how we operate as a business and continue to exceed the expectations of our clients.\n",
             "score": 0.9871788,
-            "raw_content": null
-        },
-        {
-            "title": "WOOD & Company | Homepage",
-            "url": "https://wood.com/",
-            "content": "WOOD & Company is a member of Oaklins, a global team of 850+ financial advisory professionals in 45 countries providing M&A, growth equity, ECM, debt advisory and corporate finance services to support entrepreneurs, corporates and investors in reaching their goals.. Our membership of Oaklins, helps us to blur boundaries and enables us to efficiently execute cross-border transactions, finding ...",
-            "score": 0.984516,
             "raw_content": null
         },
         {
@@ -50,30 +71,9 @@
             "title": "Where we work | Wood",
             "url": "https://www.woodplc.com/company/where-we-operate",
             "content": "Wood has offices in over 30 countries. Use our interactive map to find the nearest office to you. Close search Who we are Our business Our leaders Where we work Contact us What we do Energy Energy ...",
-            "score": 0.95050293,
-            "raw_content": null
-        },
-        {
-            "title": "Investors | Wood",
-            "url": "https://www.woodplc.com/investors",
-            "content": "Our goal is to be leaders in the field of ESG. Our purpose and strategy is aligned to the rapid evolution to a healthier planet and we are focused on our goal to be leaders in our field in environmental, social and corporate sustainability. Sustainability is embedded at the heart of Wood. Economic, social and environmental considerations are ...",
-            "score": 0.93980294,
-            "raw_content": null
-        },
-        {
-            "title": "About Timber Products - Our History, Locations & Approach",
-            "url": "https://timberproducts.com/about-us/",
-            "content": "Company Overview. Founded in 1918, Timber Products produces a diversified range of wood products. Best known for its hardwood plywood, the company is committed to environmental sustainability and offers a fully integrated approach to manufacturing with 8 manufacturing facilities, an import division, and a nationwide logistics and transportation division.",
-            "score": 0.9294404,
-            "raw_content": null
-        },
-        {
-            "title": "Arbor Wood Co. | Thermally Modified Wood",
-            "url": "https://arborwoodco.com/",
-            "content": "The performance-driven choice Arbor Wood Co. produces thermally modified wood for a variety of outdoor and indoor applications including siding, decking, and architectural millwork.Our process starts by using domestically and responsibly sourced wood which is thermally modified using only heat and steam. The result is a high-quality, performance-driven material, which sustains the natural ...",
-            "score": 0.9175985,
+            "score": 0.950503,
             "raw_content": null
         }
     ],
-    "response_time": 1.86
+    "response_time": 1.95
 }
