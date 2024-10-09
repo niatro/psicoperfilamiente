@@ -47,14 +47,10 @@ class AIProfileGenerator:
         openai.api_key = self.openai_api_key
         self.models = MODELS
         self.archetypes = get_archetypes()
-        self.json_analysis_folder = "analisis_json"
-        self.photo_analysis_folder = "analisis_photo"
         self.ensure_folders_exist()
 
     def ensure_folders_exist(self):
-        for folder in [self.json_analysis_folder, self.photo_analysis_folder]:
-            if not os.path.exists(folder):
-                os.makedirs(folder)
+        pass  # Ya no necesitamos crear carpetas adicionales
 
     def read_file_content(self, file_path):
         try:
@@ -116,10 +112,7 @@ class AIProfileGenerator:
             print(f"Error al analizar la foto: {str(e)}")
             return "No se pudo analizar la foto debido a un error."
 
-    def analyze_json(self, json_path, model_type, model_name):
-        with open(json_path, 'r', encoding='utf-8') as json_file:
-            json_data = json.load(json_file)
-        
+    def analyze_json(self, json_data, model_type, model_name):
         prompt = get_linkedin_profile_prompt(json.dumps(json_data, indent=4))
         
         if model_type == "openai":
@@ -219,8 +212,7 @@ class AIProfileGenerator:
         return sanitized
 
     def process_json_files(self, json_folder, photo_folder, web_search_folder, output_folder, model_type, model_name):
-        self.ensure_folders_exist()
-        
+        # Ya no necesitamos crear carpetas adicionales
         for filename in os.listdir(json_folder):
             if filename.endswith(".json"):
                 json_path = os.path.join(json_folder, filename)
@@ -228,19 +220,17 @@ class AIProfileGenerator:
                 photo_path = os.path.join(photo_folder, f"{base_filename}_profile.png")
                 
                 try:
-                    # Analizar JSON
+                    # Cargar datos JSON
                     with open(json_path, 'r', encoding='utf-8') as json_file:
                         json_data = json.load(json_file)
-                    json_analysis = self.analyze_json(json_path, model_type, model_name)
-                    json_analysis_path = os.path.join(self.json_analysis_folder, f"{base_filename}_json_analysis.txt")
-                    self.save_profile(json_analysis, json_analysis_path)
                     
-                    # Analizar foto
+                    # Obtener análisis del JSON (opcional, ya que usamos json_data directamente)
+                    # json_analysis = self.analyze_json(json_data, model_type, model_name)
+                    
+                    # Analizar foto y obtener el análisis
                     photo_analysis = self.analyze_photo(photo_path, model_type, model_name)
-                    photo_analysis_path = os.path.join(self.photo_analysis_folder, f"{base_filename}_photo_analysis.txt")
-                    self.save_profile(photo_analysis, photo_analysis_path)
                     
-                    # Cargar resultados de búsqueda web
+                    # Cargar y formatear resultados de búsqueda web
                     name = json_data.get('Nombre', '').strip()
                     company = json_data.get('Empresa', '').strip()
                     
@@ -310,16 +300,16 @@ class AIProfileGenerator:
                         f.write(error_message)
                     print(f"Se ha guardado un archivo de error para {base_filename}")
 
-def main():
-    generator = AIProfileGenerator()
-    model_type, model_name = generator.select_model()
-    generator.process_json_files("json_profiles", "profile_photos", "web_search_results", "perfiles_completos", model_type, model_name)
+    def main():
+        generator = AIProfileGenerator()
+        model_type, model_name = generator.select_model()
+        generator.process_json_files("json_profiles", "profile_photos", "web_search_results", "perfiles_completos", model_type, model_name)
 
-    # Asegurarse de que las carpetas existan
-    for folder in ["json_profiles", "profile_photos", "web_search_results", "perfiles_completos"]:
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-            print(f"Carpeta '{folder}' creada.")
+        # Asegurarse de que las carpetas existan
+        for folder in ["json_profiles", "profile_photos", "web_search_results", "perfiles_completos"]:
+            if not os.path.exists(folder):
+                os.makedirs(folder)
+                print(f"Carpeta '{folder}' creada.")
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
