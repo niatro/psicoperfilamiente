@@ -35,22 +35,6 @@ def get_linkedin_profile_prompt(text):
     \n\n{text}
     """
 
-def get_profile_generation_prompt(json_data):
-    return f"Genera un perfil detallado basado en la siguiente información:\n\n{json.dumps(json_data, indent=4)}"
-
-def get_json_analysis_prompt(json_data):
-    return f"""
-    Analiza el siguiente perfil de LinkedIn y proporciona insights sobre:
-    1. Trayectoria profesional
-    2. Habilidades clave
-    3. Posibles áreas de experiencia
-    4. Recomendaciones para desarrollo profesional
-    5. Posibles intereses basados en su perfil
-
-    Perfil:
-    {json.dumps(json_data, indent=4)}
-    """
-
 def get_photo_analysis_prompt(photo_description):
     return f"""
 Eres un psicólogo experto en análisis de imágenes de LinkedIn. Se te proporcionará una descripción detallada de una foto de perfil de LinkedIn. Tu tarea es realizar un análisis psicológico **objetivo** de la persona en la foto, identificando tanto aspectos positivos como negativos. Presta atención a la expresión facial, lenguaje corporal, vestimenta, apariencia general y cualquier otro detalle relevante que puedas observar.
