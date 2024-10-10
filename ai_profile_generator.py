@@ -13,8 +13,8 @@ from prompt_profile import (
     get_photo_analysis_prompt,
     get_linkedin_profile_prompt
 )
-import base64
-import requests
+# Importamos DataProcessor
+from scr.processors.data_processor import DataProcessor
 
 # Cargar variables de entorno
 load_dotenv()
@@ -46,7 +46,6 @@ class AIProfileGenerator:
     def __init__(self):
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
         self.anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
-        openai.api_key = self.openai_api_key
         self.models = MODELS
         self.archetypes = get_archetypes()
         self.ensure_folders_exist()
@@ -98,55 +97,20 @@ class AIProfileGenerator:
 
     def analyze_photo(self, photo_path, model_type, model_name):
         if not os.path.exists(photo_path):
+            print(f"Foto no encontrada en la ruta: {photo_path}")
             return "No se encontró la foto de perfil."
 
         try:
-            # Codificar la imagen en base64
-            with open(photo_path, "rb") as image_file:
-                base64_image = base64.b64encode(image_file.read()).decode('utf-8')
-
-            # Crear el Data URL de la imagen
-            data_url = f"data:image/jpeg;base64,{base64_image}"
-
-            # Crear el payload para la solicitud
-            headers = {
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {self.openai_api_key}"
-            }
-
-            payload = {
-                "model": "gpt-4o",
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": "Por favor, proporciona una descripción detallada de la siguiente imagen y realiza un análisis psicológico objetivo basado en ella."
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": data_url
-                                }
-                            }
-                        ]
-                    }
-                ],
-                "max_tokens": 500
-            }
-
-            # Realizar la solicitud a la API de OpenAI
-            response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-
-            # Procesar la respuesta
-            if response.status_code == 200:
-                response_data = response.json()
-                photo_analysis = response_data['choices'][0]['message']['content']
-                return photo_analysis
+            # Utilizar DataProcessor con el modelo 'gpt-4o-mini'
+            data_processor = DataProcessor(model_name='gpt-4o-mini')
+            # Procesar la imagen y obtener el análisis directamente
+            analysis = data_processor.process_image(photo_path)
+            if analysis:
+                print(f"Análisis de la foto obtenido: {analysis[:100]}...")  # Opcional: imprimir los primeros 100 caracteres
+                return analysis
             else:
-                print(f"Error en la solicitud a la API de OpenAI: {response.status_code} - {response.text}")
-                return "No se pudo analizar la foto debido a un error en la solicitud a la API."
+                print(f"No se pudo obtener el análisis para {photo_path}")
+                return "No se pudo analizar la foto debido a un error."
         except Exception as e:
             print(f"Error al analizar la foto: {str(e)}")
             return "No se pudo analizar la foto debido a un error."
@@ -256,7 +220,22 @@ class AIProfileGenerator:
             if filename.endswith(".json"):
                 json_path = os.path.join(json_folder, filename)
                 base_filename = os.path.splitext(filename)[0]
+                # Buscar la foto correspondiente
                 photo_path = os.path.join(photo_folder, f"{base_filename}_profile.png")
+                if not os.path.exists(photo_path):
+                    photo_path = os.path.join(photo_folder, f"{base_filename}.png")
+                if not os.path.exists(photo_path):
+                    photo_path = os.path.join(photo_folder, f"{base_filename}.jpg")
+                if not os.path.exists(photo_path):
+                    photo_path = os.path.join(photo_folder, f"{base_filename}_profile.jpg")
+                if not os.path.exists(photo_path):
+                    print(f"No se encontró la foto para el perfil {base_filename}")
+                    photo_analysis = "No se encontró la foto de perfil."
+                else:
+                    print(f"Foto encontrada para el perfil {base_filename}: {photo_path}")
+                    # Analizar foto y obtener el análisis
+                    photo_analysis = self.analyze_photo(photo_path, model_type, model_name)
+                    print(f"Análisis de la foto: {photo_analysis[:100]}...")  # Opcional: imprimir los primeros 100 caracteres
                 
                 try:
                     # Cargar datos JSON
