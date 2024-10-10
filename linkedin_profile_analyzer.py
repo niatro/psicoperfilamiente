@@ -39,12 +39,12 @@ class LinkedInProfileAnalyzer:
                 ]
             )
             raw_response = response['choices'][0]['message']['content']
-            print("Respuesta cruda de GPT-4:", raw_response)
+            print("Respuesta cruda de gpt-4o:", raw_response)
             
             cleaned_response = raw_response.strip().strip("```").strip("json").strip()
             return cleaned_response
         except Exception as e:
-            print(f"Error al procesar el texto con GPT-4: {str(e)}")
+            print(f"Error al procesar el texto con gpt-4o: {str(e)}")
             return None
 
     def save_json(self, data, output_file):

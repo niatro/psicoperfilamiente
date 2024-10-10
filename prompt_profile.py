@@ -2,7 +2,12 @@ import json
 
 def get_linkedin_profile_prompt(text):
     return f"""
-    Extrae la siguiente información del perfil de LinkedIn en formato JSON. Asegúrate de que la respuesta esté estructurada como un objeto JSON válido. La información requerida es:
+    Extrae la siguiente información del perfil de LinkedIn proporcionado y devuélvela en formato JSON sin comentarios ni texto adicional:
+    
+    [Información del perfil]
+    
+    Debe contener los siguientes campos:
+
     - Nombre
     - Empresa
     - Cargo
@@ -21,6 +26,10 @@ def get_linkedin_profile_prompt(text):
     - Estima la edad, basado en los años de experiencia y su educación
     - Extrae una lista de las entidades más significativas con las que se relaciona la persona
     - Identifica la institución más relevante en su trabajo (puedes elegir organización dependiendo si consideras que alguna es muy importante v/s si ha trabajado mucho tiempo en alguna en especial)
+
+    Si algún campo no está disponible, indícalo como un string vacío o una lista vacía según corresponda.
+
+    Recuerda, **solo devuelve el JSON sin notas ni comentarios adicionales**.
 
     El texto del perfil es el siguiente:
     \n\n{text}
@@ -44,7 +53,7 @@ def get_json_analysis_prompt(json_data):
 
 def get_photo_analysis_prompt(photo_description):
     return f"""
-Eres un psicólogo experto en análisis de imágenes de personas. Se te proporcionará una descripción detallada de una foto de perfil de LinkedIn. Tu tarea es realizar un análisis psicológico **objetivo** de la persona en la foto, identificando tanto aspectos positivos como negativos. Presta atención a la expresión facial, lenguaje corporal, vestimenta, apariencia general y cualquier otro detalle relevante que puedas observar.
+Eres un psicólogo experto en análisis de imágenes de LinkedIn. Se te proporcionará una descripción detallada de una foto de perfil de LinkedIn. Tu tarea es realizar un análisis psicológico **objetivo** de la persona en la foto, identificando tanto aspectos positivos como negativos. Presta atención a la expresión facial, lenguaje corporal, vestimenta, apariencia general y cualquier otro detalle relevante que puedas observar.
 
 Por favor, proporciona un informe detallado que incluya:
 
