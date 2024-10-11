@@ -35,7 +35,7 @@ def get_linkedin_profile_prompt(text):
     \n\n{text}
     """
 
-def get_photo_analysis_prompt(photo_description):
+def get_photo_analysis_prompt():
     return f"""
 Eres un psicólogo experto en análisis de imágenes de LinkedIn. Se te proporcionará una descripción detallada de una foto de perfil de LinkedIn. Tu tarea es realizar un análisis psicológico **objetivo** de la persona en la foto, identificando tanto aspectos positivos como negativos. Presta atención a la expresión facial, lenguaje corporal, vestimenta, apariencia general y cualquier otro detalle relevante que puedas observar.
 
@@ -54,8 +54,6 @@ Por favor, proporciona un informe detallado que incluya:
 Recuerda ser objetivo y equilibrado en tu análisis, evitando sesgos y proporcionando observaciones basadas en la descripción de la imagen.
 
 Aquí está la descripción de la foto:
-
-{photo_description}
 """
 
 def get_archetypes():
@@ -101,7 +99,7 @@ def get_archetypes():
     """
 
 def get_archetype_analysis_prompt(json_data, photo_analysis, archetypes, person_search_data, company_search_data, person_search_file, company_search_file):
-    return f"""You will be analyzing a person's LinkedIn profile, profile photo, and web search results to determine their personality archetype. You will be provided with six inputs: LinkedIn profile data in JSON format, a description of the profile photo, a list of archetypes, web search results for the person, and web search results for their company.
+    return f"""You will be analyzing a person's LinkedIn profile, profile photo, and web search results to determine their personality archetype and provide personalized negotiation recommendations. You will be provided with six inputs: LinkedIn profile data in JSON format, a description of the profile photo, a list of archetypes, web search results for the person, and web search results for their company.
 
 First, here is the LinkedIn profile data in JSON format:
 <linkedin_json>
@@ -128,61 +126,84 @@ Here are the web search results for the person's company from the file {company_
 {company_search_data}
 </company_web_search_results>
 
- Por favor, genera los siguientes outputs en formato markdown bellamente formateado:
+Tu tarea es realizar un análisis psicológico detallado, crítico y matizado de la persona, integrando la información de todas las fuentes proporcionadas. Deberás descubrir patrones únicos, aspectos ocultos y rasgos no evidentes, basando tus conclusiones estrictamente en la evidencia disponible. Evita generalizaciones, redundancias y suposiciones sin fundamento.
 
-    1. **Currículum vitae** de la persona, obtenido de los datos proporcionados en `<linkedin_json>`.
+Por favor, genera los siguientes outputs en formato markdown bellamente formateado:
 
-    2. **Información en la web de la persona**: Proporciona un resumen completo y objetivo de la información encontrada sobre la persona en los resultados de búsqueda web (`<person_web_search_results>`). Extrae información clave, detalles relevantes y cualquier insight importante de los resultados de búsqueda. No te limites a listar los enlaces; en su lugar, resume el contenido encontrado.
+1. **Currículum vitae**: Resume la trayectoria profesional de la persona utilizando los datos proporcionados en `<linkedin_json>`. Enfócate en roles clave, logros, habilidades, educación y cualquier experiencia profesional notable. Asegura que el resumen sea completo y adaptado al perfil particular de la persona.
 
-    3. **Información en la web sobre la empresa**: Proporciona un resumen completo y objetivo de la información encontrada sobre la empresa en los resultados de búsqueda web (`<company_web_search_results>`). Extrae información clave, detalles relevantes y cualquier insight importante de los resultados de búsqueda. No te limites a listar los enlaces; en su lugar, resume el contenido encontrado.
+2. **Información en la web de la persona**: Proporciona un resumen completo y objetivo de la información encontrada sobre la persona en los resultados de búsqueda web (`<person_web_search_results>`). Extrae información clave, detalles relevantes y cualquier insight importante de los resultados de búsqueda. No te limites a listar los enlaces; en su lugar, sintetiza el contenido encontrado, destacando hallazgos significativos.
 
-    4. **Análisis Foto de la Persona**: Proporciona un análisis psicológico objetivo de la foto de la persona, identificando tanto aspectos positivos como negativos. Incluye los siguientes puntos:
+3. **Información en la web sobre la empresa**: Proporciona un resumen completo y objetivo de la información encontrada sobre la empresa en los resultados de búsqueda web (`<company_web_search_results>`). Extrae información clave, detalles relevantes y cualquier insight importante de los resultados de búsqueda. No te limites a listar los enlaces; en su lugar, sintetiza el contenido encontrado, enfocándote en aspectos que puedan influir en el contexto profesional de la persona.
 
-       - **Análisis de la expresión facial**
-       - **Análisis del lenguaje corporal**
-       - **Análisis de la vestimenta y apariencia**
-       - **Análisis del entorno o fondo**
-       - **Conclusiones**
+4. **Análisis de la Foto de la Persona**: Proporciona un análisis psicológico objetivo de la foto de la persona, identificando tanto aspectos positivos como negativos. Incluye los siguientes puntos:
 
-    5. **Definición del arquetipo de la persona**: Para ello, sigue estos pasos:
-       a. Revisa detenidamente los datos JSON de LinkedIn, el análisis de la foto y los resultados de búsqueda web, prestando atención a campos clave como resumen, experiencia, habilidades, educación, número de contactos, edad, instituciones relevantes y cualquier otra información pertinente.
-       b. Identifica los rasgos de personalidad, comportamientos, patrones y valores que se destaquen.
-       c. Considera posibles contradicciones o aspectos ocultos que puedan inferirse de la información disponible.
-       d. Revisa la lista de arquetipos y sus categorías. Considera cuáles arquetipos coinciden mejor con los rasgos, comportamientos y valores identificados.
-       e. Selecciona los **3 arquetipos principales** que mejor describen la personalidad de la persona según tu análisis. Ordénalos por relevancia.
-       f. Para cada arquetipo seleccionado, proporciona una explicación detallada y crítica de por qué se ajusta al perfil de la persona, citando evidencia específica de los datos de LinkedIn, el análisis de la foto y los resultados de búsqueda web.
+   - **Análisis de la expresión facial**
+   - **Análisis del lenguaje corporal**
+   - **Análisis de la vestimenta y apariencia**
+   - **Análisis del entorno o fondo**
+   - **Conclusiones**
 
-       Proporciona tu salida final en el siguiente formato:
+5. **Perfil de la persona**: Desarrolla un perfil psicológico de la persona, actuando como un detective-psicólogo. Asume que las personas en LinkedIn presentan solo lo mejor de sí mismas; por lo tanto, analiza críticamente la información para identificar posibles contradicciones o aspectos ocultos que puedan inferirse de los datos. Utiliza el análisis de la foto y los resultados de búsqueda web para descubrir insights que pueden no ser inmediatamente aparentes. Proporciona un perfil matizado y basado en evidencia.
 
-    <analysis>
-    <top_archetypes>
-    1. **[Nombre del arquetipo]** (*[Categoría]*)
-       - **Explicación**: [Tu explicación detallada y crítica aquí]
+6. **Definición del arquetipo de la persona**: Sigue estos pasos:
 
-    2. **[Nombre del arquetipo]** (*[Categoría]*)
-       - **Explicación**: [Tu explicación detallada y crítica aquí]
+   a. Revisa detenidamente los datos JSON de LinkedIn, el análisis de la foto y los resultados de búsqueda web, prestando atención a campos clave como resumen, experiencia, habilidades, educación, número de contactos, edad, instituciones relevantes y cualquier otra información pertinente.
 
-    3. **[Nombre del arquetipo]** (*[Categoría]*)
-       - **Explicación**: [Tu explicación detallada y crítica aquí]
-    </top_archetypes>
+   b. Identifica rasgos de personalidad, comportamientos, patrones y valores que se destaquen, enfocándote en evidencia específica de este individuo.
 
-    <summary>
-    [Proporciona un resumen crítico del perfil de personalidad de la persona basado en tu análisis, integrando ideas de los arquetipos principales y considerando tanto fortalezas como posibles áreas de mejora.]
-    </summary>
-    </analysis>
+   c. Considera el perfil descrito arriba en el punto **5**.
 
-    6. Basado en toda la información proporcionada, describe detalladamente las **fortalezas** de la persona, apoyándote en evidencia específica.
+   d. Revisa la lista de arquetipos y sus categorías. Considera cuáles arquetipos coinciden mejor con los rasgos, comportamientos y valores identificados.
 
-    7. Basado en toda la información proporcionada, describe detalladamente las **debilidades** o áreas de mejora de la persona, siendo objetivo y crítico, y apoyándote en evidencia específica.
+   e. Selecciona los **3 arquetipos más relevantes** y su grupo que mejor describen la personalidad de la persona según la información que tienes disponible. Asegura que tu selección esté justificada por evidencia específica.
 
-    8. Haz una lista de **6 consideraciones clave al negociar con esta persona**, explicando paso a paso el porqué de cada una, y cómo su personalidad y comportamiento pueden influir en el proceso de negociación.
+   f. Para cada arquetipo seleccionado, proporciona una explicación detallada y crítica de por qué se ajusta al perfil de la persona, citando evidencia específica de los datos de LinkedIn, el análisis de la foto y los resultados de búsqueda web.
 
-    **Recuerda** basar tu análisis únicamente en los datos proporcionados de LinkedIn, los resultados de búsqueda web, el análisis de la foto de perfil y la lista de arquetipos. Evita suposiciones infundadas y sé objetivo en tus evaluaciones.
+   Presenta tu salida final en el siguiente formato:
 
-    **REGLAS:**
-    1. Actúa como un evaluador crítico y exigente.
-    2. Al desarrollar tus descripciones, infiere información que la persona podría intentar ocultar, pero apóyate siempre en la evidencia disponible.
-    3. Recuerda que las personas intentan mostrar lo mejor de sí mismas; tu tarea es descubrir la realidad, incluyendo posibles inconsistencias o áreas ocultas.
-    4. Evita repetir los mismos arquetipos en diferentes análisis y sé específico en tus explicaciones.
-    5. Responde siempre en **español**.
-    """
+     <analysis>
+     <top_archetypes>
+     1. **[Nombre del arquetipo]** (*[Categoría]*)
+        - **Explicación**: [Tu explicación detallada y crítica aquí]
+
+     2. **[Nombre del arquetipo]** (*[Categoría]*)
+        - **Explicación**: [Tu explicación detallada y crítica aquí]
+
+     3. **[Nombre del arquetipo]** (*[Categoría]*)
+        - **Explicación**: [Tu explicación detallada y crítica aquí]
+     </top_archetypes>
+
+     <summary>
+     [Proporciona un resumen crítico del perfil de personalidad de la persona basado en tu análisis, integrando ideas de los arquetipos principales y considerando tanto fortalezas como posibles áreas de mejora.]
+     </summary>
+     </analysis>
+
+7. **Fortalezas**: Basado en toda la información proporcionada, describe detalladamente las fortalezas de la persona, apoyándote en evidencia específica. Enfócate en cualidades y capacidades que sean evidentes a partir de los datos.
+
+8. **Debilidades**: Basado en toda la información proporcionada, describe detalladamente las debilidades o áreas de mejora de la persona. Sé objetivo y crítico, apoyándote en evidencia específica. Apunta a descubrir debilidades ocultas o no evidentes que estén respaldadas por los datos.
+
+9. **Consideraciones clave al negociar con esta persona**: Proporciona una lista de **6 consideraciones clave al negociar con esta persona**, explicando paso a paso el razonamiento detrás de cada una. Asegúrate de que cada recomendación esté basada en detalles específicos de la personalidad y comportamiento de la persona, y explica cómo estos rasgos pueden influir en el proceso de negociación. Evita generalidades y enfócate en estrategias personalizadas.
+
+**Recuerda** basar tu análisis únicamente en los datos proporcionados de LinkedIn, los resultados de búsqueda web, el análisis de la foto de perfil y la lista de arquetipos. Evita suposiciones infundadas y sé objetivo en tus evaluaciones.
+
+**REGLAS:**
+
+a. Actúa como un evaluador crítico y exigente.
+
+b. Al desarrollar tus descripciones, infiere información que la persona podría intentar ocultar, pero apóyate siempre en la evidencia disponible.
+
+c. Recuerda que las personas intentan mostrar lo mejor de sí mismas; tu tarea es descubrir la realidad, incluyendo posibles inconsistencias o áreas ocultas.
+
+d. Evita la redundancia en tus explicaciones y sé específico.
+
+e. Responde siempre en **español**.
+
+f. Asegúrate de ver más allá de lo evidente; las personas presentan la mejor versión de sí mismas, y tú debes encontrar todo aquello de lo que no hablan.
+
+g. Enfócate en descubrir los rasgos y características particulares de este individuo, basándote en evidencia específica.
+
+h. Evita la redundancia en tus explicaciones; sé preciso y basa tus análisis en la evidencia disponible.
+
+i. **Especificidad sobre generalidad**: Basa tus conclusiones y recomendaciones en detalles específicos de los datos proporcionados, evitando declaraciones vagas o generales.
+"""

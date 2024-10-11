@@ -17,7 +17,7 @@ class DataProcessor:
             base64_string = load_and_encode_image(image_path)
             
             # Obtener el prompt
-            prompt_text = get_photo_analysis_prompt("")
+            prompt_text = get_photo_analysis_prompt()
     
             # Construir el mensaje
             message_content = [
