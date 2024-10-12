@@ -3,37 +3,55 @@ import json
 def get_linkedin_profile_prompt(text):
     return f"""
     Extrae la siguiente información del perfil de LinkedIn proporcionado y devuélvela en formato JSON sin comentarios ni texto adicional:
-    
-    [Información del perfil]
-    
-    Debe contener los siguientes campos:
 
-    - Nombre
-    - Empresa
-    - Cargo
-    - Cantidad de contactos
-    - Extrae la sección del "Acerca de..."
-    - Publicaciones
-    - Experiencia (incluyendo años e instituciones)
-    - Educación (incluyendo años e instituciones)
-    - Proyectos
-    - Licencias y certificaciones (incluyendo años e instituciones)
-    - Conocimientos y aptitudes
-    - Recomendaciones
-    - Cursos
-    - Idiomas
-    - Intereses
-    - Estima la edad, basado en los años de experiencia y su educación
-    - Extrae una lista de las entidades más significativas con las que se relaciona la persona
-    - Identifica la institución más relevante en su trabajo (puedes elegir organización dependiendo si consideras que alguna es muy importante v/s si ha trabajado mucho tiempo en alguna en especial)
+    **Información del perfil**
 
-    Si algún campo no está disponible, indícalo como un string vacío o una lista vacía según corresponda.
+    Deberá contener los siguientes campos:
 
-    Recuerda, **solo devuelve el JSON sin notas ni comentarios adicionales**.
+    - **Nombre**
+    - **Empresa**
+    - **Cargo**
+    - **Cantidad de contactos**
+    - **Acerca de**: extrae la sección "Acerca de..." completa.
+    - **Publicaciones**
+    - **Experiencia**: proporciona una lista detallada de las posiciones ocupadas, incluyendo para cada una:
+        - Título del puesto
+        - Nombre de la empresa
+        - Fechas de inicio y fin
+        - Duración en el puesto
+        - Responsabilidades y logros
+    - **Educación**: proporciona una lista detallada de los estudios realizados, incluyendo para cada uno:
+        - Título obtenido
+        - Institución educativa
+        - Fechas de inicio y fin
+        - Áreas de estudio o especialización
+    - **Proyectos**
+    - **Licencias y certificaciones**: incluye para cada una:
+        - Nombre de la certificación
+        - Institución otorgante
+        - Fecha de obtención
+    - **Conocimientos y aptitudes**
+    - **Recomendaciones**
+    - **Cursos**
+    - **Idiomas**
+    - **Intereses**
+    - **Edad estimada**: estima la edad de la persona basándote en los años de experiencia laboral, fechas de educación (como año de graduación) y cualquier otra información relevante. Si no hay datos exactos, proporciona una estimación razonable y explica brevemente tu razonamiento dentro del campo.
+    - **Entidades significativas**: extrae una lista de las entidades más significativas con las que se relaciona la persona (empresas, instituciones, organizaciones), basándote en su experiencia, educación, certificaciones y otros datos.
+    - **Institución más relevante**: identifica la institución más destacada en su trayectoria profesional. Puede ser donde ha trabajado más tiempo, donde ha tenido un rol significativo o una organización especialmente notable en su industria.
+
+    **Reglas y consideraciones**:
+
+    - Si algún campo no está disponible en el texto proporcionado, infiere la información de manera lógica y basada en la evidencia disponible. Si no es posible inferirla, indícala como un string vacío o una lista vacía según corresponda.
+    - Para la **edad estimada**, utiliza todos los datos disponibles para calcular una estimación lo más precisa posible. Incluye tu razonamiento dentro del campo "Edad estimada".
+    - Sé explícito y detallado en todas las respuestas, evitando dejar campos vacíos si es posible generar alguna inferencia razonable.
+    - Asegúrate de que el JSON devuelto esté completo, incluyendo todos los campos solicitados, y sigue una estructura coherente y clara.
+    - No incluyas comentarios, explicaciones ni texto adicional fuera del JSON.
+    - No agregues campos adicionales que no estén listados.
 
     El texto del perfil es el siguiente:
     \n\n{text}
     """
+
 
 def get_photo_analysis_prompt():
     return f"""
@@ -130,7 +148,9 @@ Tu tarea es realizar un análisis psicológico detallado, crítico y matizado de
 
 Por favor, genera los siguientes outputs en formato markdown bellamente formateado:
 
-1. **Currículum vitae**: Resume la trayectoria profesional de la persona utilizando los datos proporcionados en `<linkedin_json>`. Enfócate en roles clave, logros, habilidades, educación y cualquier experiencia profesional notable. Asegura que el resumen sea completo y adaptado al perfil particular de la persona.
+1. **Currículum vitae**: Utilizando **todos los campos** presentes en `<linkedin_json>`, genera un currículum vitae completo y detallado de la persona. Asegúrate de incluir cada uno de los campos, reflejando exactamente la información proporcionada en el JSON.
+
+Si algún campo está vacío o no disponible en el JSON, indícalo explícitamente en el currículum como "Información no disponible" o muestra el campo vacío según corresponda, pero **no omitas ningún campo**. El currículum debe ser una representación completa y fiel de todos los datos presentes en el JSON, manteniendo la estructura y asegurando que no se pierda información.
 
 2. **Información en la web de la persona**: Proporciona un resumen completo y objetivo de la información encontrada sobre la persona en los resultados de búsqueda web (`<person_web_search_results>`). Extrae información clave, detalles relevantes y cualquier insight importante de los resultados de búsqueda. No te limites a listar los enlaces; en su lugar, sintetiza el contenido encontrado, destacando hallazgos significativos.
 
@@ -206,4 +226,8 @@ g. Enfócate en descubrir los rasgos y características particulares de este ind
 h. Evita la redundancia en tus explicaciones; sé preciso y basa tus análisis en la evidencia disponible.
 
 i. **Especificidad sobre generalidad**: Basa tus conclusiones y recomendaciones en detalles específicos de los datos proporcionados, evitando declaraciones vagas o generales.
+
+j. **Incluye todos los campos**: En el currículum vitae, asegúrate de incluir todos los campos presentes en el JSON, sin omitir ninguno, incluso si están vacíos. Refleja fielmente la información proporcionada.
+
+k. **Estructura clara**: Presenta el currículum vitae y los demás outputs con una estructura coherente y clara, facilitando la lectura y comprensión de la información.
 """
