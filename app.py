@@ -48,15 +48,27 @@ def select_model():
     
     return model_type, model_name
 
-def get_user_email():
-    user_email = Prompt.ask("Ingrese su correo electrónico")
-    return user_email
+def get_target_email():
+    target_email = Prompt.ask("Ingrese el correo electrónico de la persona a analizar")
+    return target_email
+
+def add_email_to_profiles(json_folder, email):
+    for filename in os.listdir(json_folder):
+        if filename.endswith(".json"):
+            json_path = os.path.join(json_folder, filename)
+            with open(json_path, 'r', encoding='utf-8') as f:
+                profile_data = json.load(f)
+            profile_data['Email'] = email
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(profile_data, f, indent=4, ensure_ascii=False)
+            rprint(f"[green]Email agregado al perfil {filename}[/green]")
+
 
 def main():
     rprint(Panel("Bienvenido al Sistema de Análisis de Perfiles", style="bold green"))
     
     model_type, model_name = select_model()
-    user_email = get_user_email()
+    target_email = get_target_email()
 
     rprint("[cyan]Scraping de LinkedIn...[/cyan]")
     linkedin_scraper_main()
@@ -68,6 +80,9 @@ def main():
     rprint("[cyan]Analizando perfiles de LinkedIn...[/cyan]")
     analyzer = LinkedInProfileAnalyzer("capturas_linkedin", "json_profiles")
     analyzer.process_images()
+
+    rprint("[cyan]Agregando email al perfil...[/cyan]")
+    add_email_to_profiles("json_profiles", target_email)
 
     rprint("[cyan]Iniciando búsqueda web con Tavily...[/cyan]")
 

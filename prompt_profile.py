@@ -148,7 +148,7 @@ Tu tarea es realizar un análisis psicológico detallado, crítico y matizado de
 
 Por favor, genera los siguientes outputs en formato markdown bellamente formateado:
 
-1. **Currículum vitae**: Utilizando **todos los campos** presentes en `<linkedin_json>`, genera un currículum vitae completo y detallado de la persona. Asegúrate de incluir cada uno de los campos, reflejando exactamente la información proporcionada en el JSON.
+1. **Currículum vitae**: Utilizando **todos los campos** presentes en `<linkedin_json>`, genera un currículum vitae completo y detallado de la persona. Asegúrate de incluir cada uno de los campos, reflejando exactamente la información proporcionada en el JSON. **Coloca el "Email" justo debajo del nombre, como "mail".**
 
 Si algún campo está vacío o no disponible en el JSON, indícalo explícitamente en el currículum como "Información no disponible" o muestra el campo vacío según corresponda, pero **no omitas ningún campo**. El currículum debe ser una representación completa y fiel de todos los datos presentes en el JSON, manteniendo la estructura y asegurando que no se pierda información.
 
